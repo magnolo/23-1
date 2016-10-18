@@ -46,7 +46,8 @@ export class MapService {
         [180, 90]
       ]
     };
-    Object.assign(options, defaults);
+
+    if(options) Object.assign(options, defaults); else options = defaults;
 
     this.map = new Map(options);
 
