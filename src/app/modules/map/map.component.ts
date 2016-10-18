@@ -15,11 +15,7 @@ export class MapComponent implements OnInit {
 
     //Initizial the MapboxGl Map
     this.mapService.initMap({
-      container: 'map',
-      style: 'mapbox://styles/mapbox/light-v9',
-      zoom: 3,
-      minZoom: 2,
-      center: [17, 42]
+      
     });
 
     //Add the vector data source for the global admin boundaries

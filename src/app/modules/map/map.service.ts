@@ -22,6 +22,18 @@ export class MapService {
   }
 
   initMap(options: MapboxOptions) {
+    let defaults = {
+      container: 'map',
+      style: 'mapbox://styles/mapbox/light-v9',
+      zoom: 3,
+      minZoom: 0,
+      center: [17, 42],
+      maxBounds: [
+        [-180, -90], // Southwest coordinates
+        [180, 90]  // Northeast coordinates
+      ]
+    };
+    Object.assign(options, defaults);
     this.map = new Map(options);
   }
 
