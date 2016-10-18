@@ -21,6 +21,16 @@ export class MapComponent implements OnInit {
    * The MapboxGl map will be initialized and the dataSource and layer will be added
    */
   ngOnInit() {
+    let admin0LayerID: string = 'admin0shaped';
+
+    // EXAMPLE: colors for defined ISO CODES
+    // this data should be generated from DataService through the StyleService
+    let colorCodes = [
+      ['DE', 'rgba(255, 255, 0,1)'],
+      ['AT', 'rgba(255, 0, 0,1)'],
+      ['IT', 'rgba(0, 0, 255 ,1)'],
+      ['ES', 'rgba(0, 255, 255,1)'],
+    ];
 
     //Initialize the MapboxGl Map, no params means default values
     this.mapService.initMap();
@@ -33,15 +43,21 @@ export class MapComponent implements OnInit {
 
     //Add the (fill)layer for all country shapes above the water label layer, underneath all country labels
     this.mapService.addLayer({
-      id: 'admin0shaped',
+      id: admin0LayerID,
       source: 'admin0',
       'source-layer': 'ne_10m_admin_0_countries-5pek43',
       type: 'fill',
       filter: ['!=', 'ISO_A2', ''],
       paint: {
         'fill-color': '#000',
-        'fill-opacity': 1
+        'fill-opacity': 0.5
       }
     }, 'water-label');
+
+    // Paint the Layer shapes where the iso values fit the colorCodes
+    this.mapService.paintLayer(admin0LayerID,'ISO_A2', colorCodes);
+
+    // Filter just the shapes which available in colorCodes
+    this.mapService.filterLayer(admin0LayerID, 'ISO_A2', 'in', colorCodes.map((code) => { return code[0]}));
   }
 }

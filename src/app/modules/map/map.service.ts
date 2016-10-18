@@ -12,17 +12,27 @@ export class MapService {
 
   mapbox: any;
   map: Map;
-  token: string;
+  token: string = 'pk.eyJ1IjoiZHozMTY0MjQiLCJhIjoiNzI3NmNkOTcyNWFlNGQxNzU2OTA1N2EzN2FkNWIwMTcifQ.NS8KWg47FzfLPlKY0JMNiQ';
   dataSources: VectorSource[];
   layers: Layer[];
   position: LngLat;
+  defaults: Object = {
+    container: 'map',
+    style: 'mapbox://styles/mapbox/light-v9',
+    zoom: 3,
+    minZoom: 0,
+    center: [17, 42],
+    maxBounds: [
+      [-180, -90],
+      [180, 90]
+    ]
+  };
 
   /**
    * The constructor of the service sets the mapbox token
    */
   constructor() {
 
-    this.token = 'pk.eyJ1IjoiZHozMTY0MjQiLCJhIjoiNzI3NmNkOTcyNWFlNGQxNzU2OTA1N2EzN2FkNWIwMTcifQ.NS8KWg47FzfLPlKY0JMNiQ';
     this.mapbox = mapboxgl;
     this.mapbox.accessToken = this.token;
 
@@ -35,23 +45,26 @@ export class MapService {
   initMap(options?: MapboxOptions) {
 
     // Defining the default options for the map. Will be overwritten by the options parameters
-    let defaults = {
-      container: 'map',
-      style: 'mapbox://styles/mapbox/light-v9',
-      zoom: 3,
-      minZoom: 0,
-      center: [17, 42],
-      maxBounds: [
-        [-180, -90],
-        [180, 90]
-      ]
-    };
-
-    if(options) Object.assign(options, defaults); else options = defaults;
+    if (options) Object.assign(options, this.defaults); else options = this.defaults;
 
     this.map = new Map(options);
 
     return this.map;
+  }
+
+  /**
+   * Check if map and their styles are loaded and ready to get manipulated
+   * TODO: Needs some further checking if map is up and running
+   * @param  {Function} fn The function which gets executed when the map is loaded
+   */
+  _mapLoaded(fn: Function) {
+
+    if (this.map.loaded()) {
+      fn();
+    }
+    else {
+      this.map.on('load', fn);
+    }
   }
 
   /**
@@ -61,15 +74,8 @@ export class MapService {
    */
   addDataSource(id: string, source: VectorSource) {
 
-    //check if the map and its styles are loaded and add the dataSource
-    if(this.map.loaded()){
-        this.map.addSource(id, source);
-    }
-    else{
-      this.map.on('load', () => {
-        this.map.addSource(id, source);
-      });
-    }
+    this._mapLoaded(() => this.map.addSource(id, source));
+
   }
 
   /**
@@ -87,15 +93,7 @@ export class MapService {
    */
   addLayer(layer: Layer, aboveLayerId: string) {
 
-    //check if the map and its styles are loaded and create the layer
-    if(this.map.loaded()){
-      this.map.addLayer(layer, aboveLayerId || 'water-label');
-    }
-    else{
-      this.map.on('load', () => {
-        this.map.addLayer(layer, aboveLayerId || 'water-label');
-      });
-    }
+    this._mapLoaded(() => this.map.addLayer(layer, aboveLayerId || 'water-label'));
 
   }
 
@@ -104,6 +102,40 @@ export class MapService {
    * @param  {string} layerId The identifier of the layer which should be removed
    */
   removeLayer(layerId: string) {
+
+  }
+
+  /**
+   * Colorize the layer
+   * @param  {string}    layerId The id of the layer to get painted
+   * @param  {string}    key   The property key of the layers feature data to reference to
+   * @param  {any}       stops   An array of the property value and a corresponding color
+   * @param  {string}    type    One of identity, exponential, interval, categorical.
+   * @param  {string}    property The style property which should be painted
+   */
+  paintLayer(layerId: string, key: string, stops: any, type: string = 'categorical', property: string = 'fill-color') {
+
+    let colors = {
+      'property': key,
+      'type': type,
+      'stops': stops
+    };
+
+    this._mapLoaded(() =>this.map.setPaintProperty(layerId, property, colors));
+
+  }
+
+  /**
+   * Filter the features of the Layer
+   * @param  {string}   layerId   The id of the layer where to apply filter
+   * @param  {string}   field     The property key of the layers feature data to reference to
+   * @param  {string}   operation The operator to comparer to the feature property value
+   * @param  {string[]} values    All the values for multiple comparison
+   * TODO: Make all filter posibilities available
+   */
+  filterLayer(layerId: string, field: string, operation: string, values: string[]) {
+
+    this._mapLoaded(() => this.map.setFilter(layerId, [operation, field].concat(values)));
 
   }
 
