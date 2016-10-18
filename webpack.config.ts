@@ -4,7 +4,10 @@ var path = require('path');
 
 var commonConfig = {
   resolve: {
-    extensions: ['.ts', '.js', '.json']
+    extensions: ['.ts', '.js', '.json'],
+    alias: {
+      'mapbox-gl': path.resolve('./node_modules/mapbox-gl/dist/mapbox-gl.js')
+    }
   },
   module: {
     loaders: [
@@ -12,7 +15,9 @@ var commonConfig = {
       { test: /\.ts$/, loaders: ['ts-loader', 'angular2-template-loader'] },
       { test: /\.html$/, loader: 'raw-loader' },
       { test: /\.css$/, loader: 'raw-loader' },
-      { test: /\.json$/, loader: 'json-loader' }
+      { test: /\.json$/, loader: 'json-loader' },
+      { test: /\.scss$/, exclude: /node_modules/, loaders: ['raw-loader', 'sass-loader']},
+      { test: /\.js$/, include: path.resolve(__dirname, 'node_modules/mapbox-gl/js/render/shaders.js'), loader: 'transform/cacheable?brfs'}
     ],
   },
   plugins: [
