@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MapService } from './map.service';
 
+/**
+ * This component implements the MapService and initializes the Map
+ * @param  {'map'}                          selector  Defines the html-tag where to be rendered
+ * @param  {require('./map.component.html'} template  Includes the html template which contains the DOM element where the map will be rendered
+ */
 @Component({
   selector: 'map',
   template: require('./map.component.html'),
@@ -11,12 +16,14 @@ export class MapComponent implements OnInit {
 
   constructor(private mapService: MapService) {}
 
+
+  /**
+   * The MapboxGl map will be initialized and the dataSource and layer will be added
+   */
   ngOnInit() {
 
-    //Initizial the MapboxGl Map
-    this.mapService.initMap({
-      
-    });
+    //Initialize the MapboxGl Map, no params means default values
+    this.mapService.initMap();
 
     //Add the vector data source for the global admin boundaries
     this.mapService.addDataSource('admin0', {
