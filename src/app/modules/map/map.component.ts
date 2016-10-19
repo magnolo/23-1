@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MapService } from './map.service';
+import { StyleService } from '../../services/style.service';
 
 /**
  * This component implements the MapService and initializes the Map
@@ -10,7 +11,7 @@ import { MapService } from './map.service';
   selector: 'map',
   template: require('./map.component.html'),
   styleUrls: ['./map.scss'],
-  providers: []
+  providers: [StyleService]
 })
 export class MapComponent implements OnInit {
 
@@ -19,7 +20,7 @@ export class MapComponent implements OnInit {
   admin0Key: string = 'ISO_A2';
   mapzenKey: string = 'vector-tiles-Q3_Os5w';
 
-  constructor(private mapService: MapService) { }
+  constructor(private mapService: MapService, private styleService: StyleService) { }
 
   /**
    * The MapboxGl map will be initialized and the dataSource and layer will be added
@@ -29,12 +30,7 @@ export class MapComponent implements OnInit {
 
     // EXAMPLE: colors for defined ISO CODES
     // this data should be generated from DataService through the StyleService
-    let colorCodes = [
-      ['DE', 'rgba(255, 255, 0,1)'],
-      ['AT', 'rgba(255, 0, 0,1)'],
-      ['IT', 'rgba(0, 0, 255 ,1)'],
-      ['ES', 'rgba(0, 255, 255,1)'],
-    ];
+    let colorCodes = this.styleService.getBasemapStyle();
 
     //Initialize the MapboxGl Map, no params means default values
     this.mapService.initMap();

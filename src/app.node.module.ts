@@ -7,6 +7,9 @@ import { App } from './app/app';
 import { MapComponent} from './app/modules/map/map.component';
 import { MapService} from './app/modules/map/map.service';
 
+import { StyleService } from './app/services/style.service';
+import { DataService } from './app/services/data.service';
+
 @NgModule({
   bootstrap: [ App ],
   declarations: [ App, MapComponent ],
