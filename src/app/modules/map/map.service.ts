@@ -109,10 +109,8 @@ export class MapService {
     let coords, bbox;
     if (!gj.hasOwnProperty('type')) return;
     coords = this._getCoordinatesDump(gj);
-    console.log(coords);
     bbox = [Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY];
     return coords.reduce((prev, coord) => {
-      console.log(prev, coord);
       return [
         Math.min(coord[0], prev[0]),
         Math.min(coord[1], prev[1]),
