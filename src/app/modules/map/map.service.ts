@@ -121,7 +121,7 @@ export class MapService {
       'stops': stops
     };
 
-    this._mapLoaded(() =>this.map.setPaintProperty(layerId, property, colors));
+    this._mapLoaded(() => this.map.setPaintProperty(layerId, property, colors));
 
   }
 
@@ -139,4 +139,38 @@ export class MapService {
 
   }
 
+  /**
+   * Add an specific event for a layer by feature
+   * @param  {string}   layerId The id of the layer from which the features get extracted
+   * @param  {string}   event   Type of the event (click, mousemove...)
+   * @param  {Function} fn      The function that gets executed when the event happens. Injects the active feature
+   */
+  setLayerEvent(layerId: string, event: string, fn: Function, showClickCursor: boolean = false) {
+    this._mapLoaded(() => {
+
+      this.map.on(event, (e) => {
+        let features = this.map.queryRenderedFeatures(e.point, {
+          layers: [layerId]
+        });
+        if (features.length > 0) {
+          let feature = features[0];
+          fn(feature);
+        }
+      });
+
+      /**
+       * checks if there should be a cursor on hovering the layer feature
+       */
+      if (showClickCursor) {
+        this.map
+          .off('mousemove')
+          .on('mousemove', (e) => {
+            let features = this.map.queryRenderedFeatures(e.point, {
+              layers: [layerId]
+            });
+            this.map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
+          })
+      }
+    });
+  }
 }

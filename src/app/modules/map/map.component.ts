@@ -17,6 +17,7 @@ export class MapComponent implements OnInit {
   adminDataSourceID: string = 'admin0';
   admin0LayerID: string = 'admin0shaped';
   admin0Key: string = 'ISO_A2';
+  mapzenKey: string = 'vector-tiles-Q3_Os5w';
 
   constructor(private mapService: MapService) { }
 
@@ -41,6 +42,7 @@ export class MapComponent implements OnInit {
     //Add the vector data source for the global admin boundaries
     this.mapService.addDataSource(this.adminDataSourceID, {
       type: 'vector',
+      //tiles: ['https://tile.mapzen.com/mapzen/vector/v1/boundaries/{z}/{x}/{y}.mvt?api_key='+this.mapzenKey]
       url: 'mapbox://magnolo.6zzfq94v'
     });
 
@@ -62,5 +64,10 @@ export class MapComponent implements OnInit {
 
     // Filter just the shapes which available in colorCodes
     this.mapService.filterLayer(this.admin0LayerID, this.admin0Key, 'in', colorCodes.map((code) => { return code[0] }));
+
+    // Add a click for the layer an test the feature
+    this.mapService.setLayerEvent(this.admin0LayerID, 'click', (feature) => {
+      console.log(feature);
+    }, true);
   }
 }
