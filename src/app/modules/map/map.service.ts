@@ -67,6 +67,23 @@ export class MapService {
     }
   }
 
+  _getBoundingBox(feature){
+    let bounds = {xMin:180, xMax:-180, yMin: 90, yMax:-90}, longitude, latitude;
+    let coords = feature.geometry.coordinates[0];
+
+    for(var i = 0; i < coords.length; i++){
+
+      longitude = coords[i][0][0];
+      latitude = coords[i][0][1];
+
+      bounds.xMin = bounds.xMin < longitude ? bounds.xMin : longitude;
+      bounds.xMax = bounds.xMax > longitude ? bounds.xMax : longitude;
+      bounds.yMin = bounds.yMin < latitude ? bounds.yMin : latitude;
+      bounds.yMax = bounds.yMax > latitude ? bounds.yMax : latitude;
+    }
+    return [[bounds.xMin, bounds.yMin], [bounds.xMax, bounds.yMax]];
+  }
+
   /**
    * Adding a data source to the map
    * @param  {string}       id     The identifier of the data source
@@ -146,6 +163,7 @@ export class MapService {
    * @param  {Function} fn      The function that gets executed when the event happens. Injects the active feature
    */
   setLayerEvent(layerId: string, event: string, fn: Function, showClickCursor: boolean = false) {
+
     this._mapLoaded(() => {
 
       this.map.on(event, (e) => {
@@ -163,7 +181,6 @@ export class MapService {
        */
       if (showClickCursor) {
         this.map
-          .off('mousemove')
           .on('mousemove', (e) => {
             let features = this.map.queryRenderedFeatures(e.point, {
               layers: [layerId]
@@ -172,5 +189,22 @@ export class MapService {
           })
       }
     });
+  }
+
+  /**
+   * remove an event from the map
+   * @param  {string} event Event type (click, mousemove,...)
+   */
+  removeEvent(event: string){
+    this._mapLoaded(() => this.map.off(event));
+  }
+
+  /**
+   * Bring to map to an given feature
+   * @param  {[type]} feature The layer feature with coordinates 
+   */
+  flyToFeature(feature){
+    let bounds =  this._getBoundingBox(feature);
+    this.map.fitBounds(bounds);
   }
 }
