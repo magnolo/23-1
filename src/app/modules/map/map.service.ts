@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
-import { Map, LngLat, Layer, VectorSource, MapboxOptions } from 'mapbox-gl';
+import { Map, LngLat, LngLatBounds, Layer, VectorSource, MapboxOptions } from 'mapbox-gl';
 
 /**
  * The MapService manages the MapboxGL Map
@@ -16,7 +16,7 @@ export class MapService {
   dataSources: VectorSource[];
   layers: Layer[];
   position: LngLat;
-  defaults: Object = {
+  defaults: MapboxOptions = {
     container: 'map',
     style: 'mapbox://styles/mapbox/light-v9',
     zoom: 3,
@@ -67,21 +67,59 @@ export class MapService {
     }
   }
 
-  _getBoundingBox(feature){
-    let bounds = {xMin:180, xMax:-180, yMin: 90, yMax:-90}, longitude, latitude;
-    let coords = feature.geometry.coordinates[0];
-
-    for(var i = 0; i < coords.length; i++){
-
-      longitude = coords[i][0][0];
-      latitude = coords[i][0][1];
-
-      bounds.xMin = bounds.xMin < longitude ? bounds.xMin : longitude;
-      bounds.xMax = bounds.xMax > longitude ? bounds.xMax : longitude;
-      bounds.yMin = bounds.yMin < latitude ? bounds.yMin : latitude;
-      bounds.yMax = bounds.yMax > latitude ? bounds.yMax : latitude;
+  /**
+   * Reduces the given feature to a points array;
+   * @param  {[type]} gj Feature
+   */
+  _getCoordinatesDump(gj) {
+    var coords;
+    if (gj.type == 'Point') {
+      coords = [gj.coordinates];
+    } else if (gj.type == 'LineString' || gj.type == 'MultiPoint') {
+      coords = gj.coordinates;
+    } else if (gj.type == 'Polygon' || gj.type == 'MultiLineString') {
+      coords = gj.coordinates.reduce((dump, part) => {
+        return dump.concat(part);
+      }, []);
+    } else if (gj.type == 'MultiPolygon') {
+      coords = gj.coordinates.reduce((dump, poly) => {
+        return dump.concat(poly.reduce((points, part) => {
+          return points.concat(part);
+        }, []));
+      }, []);
+    } else if (gj.type == 'Feature') {
+      coords = this._getCoordinatesDump(gj.geometry);
+    } else if (gj.type == 'GeometryCollection') {
+      coords = gj.geometries.reduce((dump, g) => {
+        return dump.concat(this._getCoordinatesDump(g));
+      }, []);
+    } else if (gj.type == 'FeatureCollection') {
+      coords = gj.features.reduce(function(dump, f) {
+        return dump.concat(this._getCoordinatesDump(f));
+      }, []);
     }
-    return [[bounds.xMin, bounds.yMin], [bounds.xMax, bounds.yMax]];
+    return coords;
+  }
+  /**
+   * Get the bounding box of the selected feature.
+   * Should handle Polygons, Multipolygons
+   * @param  {GeoJSON.Feature<GeoJSON.GeometryObject>} feature The active feature
+   */
+  _getBoundingBox(gj) {
+    let coords, bbox;
+    if (!gj.hasOwnProperty('type')) return;
+    coords = this._getCoordinatesDump(gj);
+    console.log(coords);
+    bbox = [Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY];
+    return coords.reduce((prev, coord) => {
+      console.log(prev, coord);
+      return [
+        Math.min(coord[0], prev[0]),
+        Math.min(coord[1], prev[1]),
+        Math.max(coord[0], prev[2] || 0),
+        Math.max(coord[1], prev[3] || 0)
+      ];
+    })
   }
 
   /**
@@ -167,6 +205,7 @@ export class MapService {
     this._mapLoaded(() => {
 
       this.map.on(event, (e) => {
+
         let features = this.map.queryRenderedFeatures(e.point, {
           layers: [layerId]
         });
@@ -195,16 +234,17 @@ export class MapService {
    * remove an event from the map
    * @param  {string} event Event type (click, mousemove,...)
    */
-  removeEvent(event: string){
+  removeEvent(event: string) {
     this._mapLoaded(() => this.map.off(event));
   }
 
   /**
    * Bring to map to an given feature
-   * @param  {[type]} feature The layer feature with coordinates 
+   * @param  {[type]} feature The layer feature with coordinates
    */
-  flyToFeature(feature){
-    let bounds =  this._getBoundingBox(feature);
+  flyToFeature(feature) {
+
+    let bounds = this._getBoundingBox(feature);
     this.map.fitBounds(bounds);
   }
 }
