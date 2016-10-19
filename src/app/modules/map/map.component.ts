@@ -63,9 +63,9 @@ export class MapComponent implements OnInit {
 
     // Add a click for the layer an test the feature
     this.mapService.setLayerEvent(this.admin0LayerID, 'click', (feature) => {
-      console.log(feature);
+      //console.log(feature);
       // Zoom the map to the clicked feature
-      //this.mapService.flyToFeature(feature);
+      this.mapService.flyToFeature(feature.geometry);
     }, true);
   }
 }
