@@ -46,7 +46,8 @@ export class MapService {
   initMap(options?: MapboxOptions) {
 
     // Defining the default options for the map. Will be overwritten by the options parameters
-    if (options) Object.assign(options, this.mapDefaults); else options = this.mapDefaults;
+    if (options) Object.assign( this.mapDefaults, options);
+    options = this.mapDefaults;
 
     this.map = new Map(options);
 
@@ -192,7 +193,10 @@ export class MapService {
   flyToFeature(feature) {
 
     let bounds = this.mapUtils.getBoundingBox(feature);
-    this.map.fitBounds(bounds);
+    this.map.fitBounds(bounds, {
+      linear:false,
+      padding:50
+    });
 
   }
 }

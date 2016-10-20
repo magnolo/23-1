@@ -30,7 +30,6 @@ export class MapComponent implements OnInit {
     // this data should be generated from DataService through the StyleService
     let colorCodes = this.styleService.colorCoroplethsByValue();
 
-
     //Initialize the MapboxGl Map, no params means default values
     this.mapService.initMap();
 
@@ -50,7 +49,7 @@ export class MapComponent implements OnInit {
       type: 'fill',
       paint: {
         'fill-color': '#ccc',
-        'fill-opacity': 0.5
+        'fill-opacity': 0.8
       }
     }, 'water-label');
 

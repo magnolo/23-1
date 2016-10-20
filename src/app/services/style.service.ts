@@ -23,7 +23,6 @@ export class StyleService {
       }));
 
     return data.data.map((entry) => {
-      console.log([entry.iso, colorScale(entry.value)]);
       return [entry.iso, colorScale(entry.value)];
     });
   }
