@@ -11,7 +11,7 @@ export class StyleService {
 
   constructor(dataSetIndex: string) { };
 
-	getBasemapStyle(){
+	colorCoroplethsByValue(){
 		var colorCodeArray: string[][] = [
 			['DE', 'rgba(255, 255, 0,1)'],
       ['AT', 'rgba(255, 0, 0,1)'],

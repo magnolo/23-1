@@ -30,7 +30,7 @@ export class MapComponent implements OnInit {
 
     // EXAMPLE: colors for defined ISO CODES
     // this data should be generated from DataService through the StyleService
-    let colorCodes = this.styleService.getBasemapStyle();
+    let colorCodes = this.styleService.colorCoroplethsByValue();
 
     //Initialize the MapboxGl Map, no params means default values
     this.mapService.initMap();
