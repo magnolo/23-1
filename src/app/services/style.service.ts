@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
+
 /**
 * The StyleService manages the MapBoxGl Styles
 * for the Map and Layers, it uses the DataService
@@ -9,7 +10,7 @@ import { DataService } from './data.service';
 @Injectable()
 export class StyleService {
 
-  constructor(dataSetIndex: string) { };
+  constructor(private dataService: DataService) { };
 
 	getBasemapStyle(){
 		var colorCodeArray: string[][] = [
