@@ -12,7 +12,7 @@ export class StyleService {
 
   constructor(private dataService: DataService) { };
 
-	getBasemapStyle(){
+	colorCoroplethsByValue(){
 		var colorCodeArray: string[][] = [
 			['DE', 'rgba(255, 255, 0,1)'],
       ['AT', 'rgba(255, 0, 0,1)'],
