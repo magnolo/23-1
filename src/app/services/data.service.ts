@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Indicator } from '../core/indicator.class';
+import { IsoValue } from '../core/isoValue.interface';
+
 
 @Injectable()
 export class DataService {
@@ -103,6 +105,7 @@ export class DataService {
 
   constructor() { }
 
+  //Returns an IsoValue Type Array
   getValuesWithIso() {
     return this.mockData;
   }
