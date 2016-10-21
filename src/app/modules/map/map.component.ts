@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MapService } from './map.service';
-import { StyleService } from '../../services/style.service';
+import { StyleService } from './../../services/style.service';
 
 /**
  * This component implements the MapService and initializes the Map
@@ -10,8 +10,7 @@ import { StyleService } from '../../services/style.service';
 @Component({
   selector: 'map',
   template: require('./map.component.html'),
-  styleUrls: ['./map.scss'],
-  providers: [StyleService]
+  styleUrls: ['./map.scss']
 })
 export class MapComponent implements OnInit {
 
@@ -20,13 +19,12 @@ export class MapComponent implements OnInit {
   admin0Key: string = 'ISO_A2';
   mapzenKey: string = 'vector-tiles-Q3_Os5w';
 
-  constructor(private mapService: MapService, private styleService: StyleService) { }
+  constructor(private mapService: MapService,private styleService: StyleService ) {}
 
   /**
    * The MapboxGl map will be initialized and the dataSource and layer will be added
    */
   ngOnInit() {
-
 
     // EXAMPLE: colors for defined ISO CODES
     // this data should be generated from DataService through the StyleService
@@ -47,11 +45,11 @@ export class MapComponent implements OnInit {
       id: this.admin0LayerID,
       source: this.adminDataSourceID,
       'source-layer': 'ne_10m_admin_0_countries-5pek43',
-      type: 'fill',
       filter: ['!=', this.admin0Key, ''],
+      type: 'fill',
       paint: {
-        'fill-color': '#000',
-        'fill-opacity': 0.5
+        'fill-color': '#ccc',
+        'fill-opacity': 0.8
       }
     }, 'water-label');
 

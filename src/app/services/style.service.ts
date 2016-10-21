@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
+import { scaleLinear } from 'd3-scale';
+
 /**
 * The StyleService manages the MapBoxGl Styles
 * for the Map and Layers, it uses the DataService
@@ -9,17 +11,21 @@ import { DataService } from './data.service';
 @Injectable()
 export class StyleService {
 
-  constructor(dataSetIndex: string) { };
+  constructor(private dataService: DataService,) {};
 
-	colorChoroplethsByValue(){
-		var colorCodeArray: [[string, string]] = [
-			['DE', 'rgba(255, 255, 0,1)'],
-      ['AT', 'rgba(255, 0, 0,1)'],
-      ['IT', 'rgba(0, 0, 255 ,1)'],
-      ['ES', 'rgba(0, 255, 255,1)'],
-		];
+  colorCoroplethsByValue() {
+    let data = this.dataService.getValuesWithIso();
 
-		return colorCodeArray;
-	}
+    let colorScale = scaleLinear()
+      .domain([1, 33, 66, 100])
+      .range(data.colors.map((color) => {
+        return color.color;
+      }));
+
+    return data.data.map((entry) => {
+      return [entry.iso, colorScale(entry.value)];
+    });
+  }
+
 
 }

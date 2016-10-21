@@ -4,11 +4,13 @@ import { RouterModule } from '@angular/router';
 import { UniversalModule } from 'angular2-universal/node'; // for AoT we need to manually split universal packages
 
 import { App } from './app/app';
+
 import { MapComponent} from './app/modules/map/map.component';
 import { MapService} from './app/modules/map/map.service';
+import { MapUtils} from './app/modules/map/map.utils';
 
-import { StyleService } from './app/services/style.service';
 import { DataService } from './app/services/data.service';
+import { StyleService } from './app/services/style.service';
 
 @NgModule({
   bootstrap: [ App ],
@@ -20,7 +22,7 @@ import { DataService } from './app/services/data.service';
       { path: '', component: MapComponent, pathMatch: 'full' }
     ])
   ],
-  providers:[MapService]
+  providers:[MapService, MapUtils, DataService, StyleService]
 })
 export class MainModule {
 

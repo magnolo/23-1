@@ -1,11 +1,11 @@
 /*
   The import just works on npm startup not on watch
  */
-// @import '~mapbox-gl-css';
+@import '~mapbox-gl-css';
 
 
 #map{
   width:100%;
-  height:100vh;
+  height:50vh;
   min-height:300px;
 }
