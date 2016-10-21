@@ -12,9 +12,11 @@ import { MapUtils} from './app/modules/map/map.utils';
 import { DataService } from './app/services/data.service';
 import { StyleService } from './app/services/style.service';
 
+import { LegendComponent} from './app/modules/legend/legend.component';
+
 @NgModule({
   bootstrap: [ App ],
-  declarations: [ App, MapComponent ],
+  declarations: [ App, MapComponent, LegendComponent ],
   imports: [
     UniversalModule, // BrowserModule, HttpModule, and JsonpModule are included
     FormsModule,

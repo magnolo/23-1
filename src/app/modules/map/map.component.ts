@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MapService } from './map.service';
 import { StyleService } from './../../services/style.service';
+import { LegendComponent } from '../legend/legend.component';
 
 /**
  * This component implements the MapService and initializes the Map
@@ -10,7 +11,7 @@ import { StyleService } from './../../services/style.service';
 @Component({
   selector: 'map',
   template: require('./map.component.html'),
-  styleUrls: ['./map.scss']
+  styleUrls: [ './map.scss']
 })
 export class MapComponent implements OnInit {
 
@@ -36,7 +37,6 @@ export class MapComponent implements OnInit {
     //Add the vector data source for the global admin boundaries
     this.mapService.addDataSource(this.adminDataSourceID, {
       type: 'vector',
-      //tiles: ['https://tile.mapzen.com/mapzen/vector/v1/boundaries/{z}/{x}/{y}.mvt?api_key='+this.mapzenKey]
       url: 'mapbox://magnolo.6zzfq94v'
     });
 
@@ -66,4 +66,6 @@ export class MapComponent implements OnInit {
       this.mapService.flyToFeature(feature.geometry);
     }, true);
   }
+
+
 }

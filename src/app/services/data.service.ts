@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import { Indicator } from '../core/indicator.class';
 
 @Injectable()
 export class DataService {
 
-  mockData: any = {
+  mockData: Indicator = {
     id: 1,
     title: 'Hello World Indicator',
     source: {
@@ -13,19 +14,11 @@ export class DataService {
     colors: [
       {
         stop: 0,
-        color: 'yellow'
-      },
-      {
-        stop: 0.3,
-        color: 'blue'
-      },
-      {
-        stop: 0.6,
-        color: 'green'
+        color: 'red'
       },
       {
         stop: 1,
-        color: 'red'
+        color: 'green'
       }
     ],
     data: [

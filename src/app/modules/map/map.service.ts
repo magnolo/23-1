@@ -61,6 +61,7 @@ export class MapService {
    */
   _mapLoaded(fn: Function) {
 
+    if(!this.map) throw new Error ("There is no map initialized to act on! Use initMap() from the MapService");
     if (this.map.loaded()) {
       fn();
     }
