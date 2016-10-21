@@ -11,8 +11,8 @@ export class StyleService {
 
   constructor(dataSetIndex: string) { };
 
-	colorCoroplethsByValue(){
-		var colorCodeArray: string[][] = [
+	colorChoroplethsByValue(){
+		var colorCodeArray: [[string, string]] = [
 			['DE', 'rgba(255, 255, 0,1)'],
       ['AT', 'rgba(255, 0, 0,1)'],
       ['IT', 'rgba(0, 0, 255 ,1)'],
