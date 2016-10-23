@@ -27,7 +27,7 @@ export class StyleService {
     return this.data;
   }
 
-  colorCoroplethsByValue() {
+  colorChoroplethsByValue() {
     return this._getData(() => {
 
       let colorScale = scaleLinear()
