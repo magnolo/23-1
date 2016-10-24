@@ -13,11 +13,11 @@ import { DataService } from './app/services/data.service';
 import { StyleService } from './app/services/style.service';
 
 import { LegendComponent} from './app/components/legend/legend.component';
-import { MapTitleComponent } from './app/components/map-title/map-title.component';
+import { DataTitleComponent } from './app/components/data-title/data-title.component';
 
 @NgModule({
   bootstrap: [ App ],
-  declarations: [ App, MapComponent, LegendComponent, MapTitleComponent],
+  declarations: [ App, MapComponent, LegendComponent, DataTitleComponent],
   imports: [
     UniversalModule, // BrowserModule, HttpModule, and JsonpModule are included
     FormsModule,
