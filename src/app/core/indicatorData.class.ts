@@ -1,6 +1,6 @@
-import { IsoValue } from './isoValue.interface';
+import { IIsoValue } from './isoValue.interface';
 
-export class IndicatorData implements IsoValue{
+export class IndicatorData implements IIsoValue{
   iso: string;
   value: number;
 }

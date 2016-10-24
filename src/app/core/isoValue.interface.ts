@@ -1,4 +1,4 @@
-export interface IsoValue {
+export interface IIsoValue {
 	iso: string;
 	value: number;
 }

@@ -1,4 +1,4 @@
-export class ColorStop {
+export interface IColorStop {
   stop: number;
   color: string;
 }

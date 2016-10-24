@@ -4,6 +4,7 @@ import { scaleLinear, scaleQuantile } from 'd3-scale';
 import { min, max, median, extent, range } from 'd3-array';
 import { interpolateHcl } from 'd3-interpolate';
 import { Indicator } from '../core/indicator.class';
+
 /**
 * The StyleService manages the MapBoxGl Styles
 * for the Map and Layers, it uses the DataService
@@ -15,7 +16,7 @@ export class StyleService {
 
   constructor(private dataService: DataService, ) { };
 
-  data: Indicator;
+  data: any;
 
   _getData(fn?: Function, force: boolean = false) {
     if (!this.data || force) {
@@ -31,7 +32,7 @@ export class StyleService {
     return this._getData(() => {
 
       let colorScale = scaleLinear()
-        .domain([1, 100])
+        .domain([0, 25, 50, 75, 100])
         .range(this.data.colors.map((color) => {
           return color.color;
         }));
@@ -65,34 +66,37 @@ export class StyleService {
     return this._getData(() => {
 
 
-      let colorScale = scaleLinear()
+      let dataScale = scaleLinear()
         .domain(extent(this.data.data.map((entry) => {
           return entry.value
         })))
-        .ticks(4);
+        .range([0,100]);
 
-
-      return [{
-        value: 0,
-        title: 'low',
-        color: '#ff0000'
-      }, {
-          value: 25,
-          title: 'medium-low',
-          color: '#00ff00'
-        }, {
-          value: 50,
-          title: 'medium',
-          color: '#f0f0f0'
-        }, {
-          value: 75,
-          title: 'medium-high',
-          color: '#0000ff'
-        }, {
-          value: 100,
-          title: 'high',
-          color: '#0f0f0f'
-        }];
+      return this.data.colors.map((item) => {
+        item.value = dataScale(item.stop);
+        return item;
+      });
+      // return [{
+      //   value: 0,
+      //   title: 'low',
+      //   color: '#ff0000'
+      // }, {
+      //     value: 25,
+      //     title: 'medium-low',
+      //     color: '#00ff00'
+      //   }, {
+      //     value: 50,
+      //     title: 'medium',
+      //     color: '#f0f0f0'
+      //   }, {
+      //     value: 75,
+      //     title: 'medium-high',
+      //     color: '#0000ff'
+      //   }, {
+      //     value: 100,
+      //     title: 'high',
+      //     color: '#0f0f0f'
+      //   }];
     });
   }
 
