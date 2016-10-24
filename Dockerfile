@@ -1,72 +1,23 @@
-#Dockerfile
-# FROM directive to set Base Image
-FROM debian:jessie
+FROM node:latest
 
-# Replace shell with bash so we can source files
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+RUN npm i -g typings
 
-# Set environment variables
-ENV appDir /var/www/app/current
+ENV CONTAINER_PATH /usr/src/23deg
+ENV BUILD_ENV production
+WORKDIR /tmp
 
-# Run updates and install deps
-RUN apt-get update
+COPY package.json /tmp/
 
-# Install needed deps and clean up after
-RUN apt-get install -y -q --no-install-recommends \
-    apt-transport-https \
-    build-essential \
-    ca-certificates \
-    curl \
-    g++ \
-    gcc \
-    git \
-    make \
-    nginx \
-    sudo \
-    wget \
-    && rm -rf /var/lib/apt/lists/* \
-    && apt-get -y autoclean
+RUN npm install
 
-		ENV NVM_DIR /usr/local/nvm
-		ENV NODE_VERSION 5.6.0
+WORKDIR $CONTAINER_PATH
+COPY . $CONTAINER_PATH
 
-		# Install nvm with node and npm
-		RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash \
-		    && source $NVM_DIR/nvm.sh \
-		    && nvm install $NODE_VERSION \
-		    && nvm alias default $NODE_VERSION \
-		    && nvm use default
+RUN cp -a /tmp/node_modules $CONTAINER_PATH
+RUN typings install
+RUN npm run build
 
-		# Set up our PATH correctly so we don't have to long-reference npm, node, &c.
-		ENV NODE_PATH $NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
-		ENV PATH      $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
+CMD if [ "${BUILD_ENV}" = "dev" ]; then npm start | npm run watch; else npm start; fi
+#CMD ["npm", "start"]
 
-		# Set the work directory
-		RUN mkdir -p /var/www/app/current
-		WORKDIR ${appDir}
-
-		# Add our package.json and install *before* adding our application files
-		#ADD package.json ./
-    RUN git clone https://github.com/23deg/23.git .
-    RUN git checkout mapboxgl-service
-    RUN git pull
-		RUN npm install
-
-    RUN npm i -g typings
-    RUN typings install
-
-    RUN npm run build
-    RUN npm start
-
-		# Install pm2 so we can run our application
-		RUN npm i -g pm2
-
-		# Add application files
-		ADD . /var/www/app/current
-
-		#Expose the port
-		EXPOSE 3000
-
-		CMD ["pm2", "start", "processes.json", "--no-daemon"]
-
-		# voila!
+EXPOSE 3000

@@ -8,7 +8,7 @@ export class DataService {
 
   mockData: Indicator = {
     id: 1,
-    title: 'Hello World Indicator',
+    title: 'Hello I am Indicator',
     source: {
       title: 'Anuar Corp.',
       url: 'http://www.manfredwalder.at'

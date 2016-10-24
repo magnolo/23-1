@@ -1,0 +1,22 @@
+dockerized23:
+  #build: .
+  image: dockerized23:latest
+  ports:
+  - "3000:3000"
+  volumes:
+  - .:/usr/src/23deg/:rw
+  environment:
+  - BUILD_ENV=dev
+  # Before you run this file for the first time, make sure
+  # you remove node_modules/ folders in your host machine
+  command: >
+    sh -c '
+    if test -d node_modules;
+    then
+      echo node_modules_exists ;
+    else
+      echo copying_node_modules_from_image_to_working_directory &&
+      cp -a /tmp/node_modules /usr/src/23deg;
+    fi &&
+     npm start | npm run watch
+    '
