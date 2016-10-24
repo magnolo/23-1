@@ -3,6 +3,7 @@ import { MapService } from './../../services/map.service';
 import { StyleService } from './../../services/style.service';
 import { LegendComponent } from '../legend/legend.component';
 import { DataTitleComponent } from '../data-title/data-title.component';
+import { DataSourceComponent } from '../data-source/data-source.component';
 
 /**
  * This component implements the MapService and initializes the Map

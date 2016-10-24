@@ -4,7 +4,7 @@ import { DataService } from './../../services/data.service';
 @Component({
   selector: 'data-title',
   template: require('./data-title.component.html'),
-	styleUrls:['./data-title.scss']
+	styleUrls: ['./data-title.scss']
 })
 
 export class DataTitleComponent implements OnInit {
@@ -16,7 +16,6 @@ export class DataTitleComponent implements OnInit {
   ngOnInit() {
 
 		this.title = this.DataService.getTitle();
-		console.log("Map Title: " + this.title);
 
 	}
 
