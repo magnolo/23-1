@@ -6,7 +6,7 @@ var commonConfig = {
   resolve: {
     extensions: ['.ts', '.js', '.json'],
     alias: {
-      //'mapbox-gl-css': path.resolve('./node_modules/mapbox-gl/dist/mapbox-gl.css'),
+    //  'mapbox-gl-css': path.resolve('./node_modules/mapbox-gl/dist/mapbox-gl.css'),
       'mapbox-gl': path.resolve('./node_modules/mapbox-gl/dist/mapbox-gl.js'),
     }
   },

@@ -1,5 +1,9 @@
 <div class="legend">
-<div *ngFor='let item of items'>
-  {{ item.title }}
+<div *ngFor='let item of items' class="item">
+  <div class="title">{{ item.title }} </div>
+  <div class="color">
+    <div class="box" [ngStyle]="{'background-color': item.color}"></div>
+  </div>
+  <!-- <div class="value">{{ item.value}}</div> -->
 </div>
 </div>

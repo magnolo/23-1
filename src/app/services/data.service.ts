@@ -14,27 +14,27 @@ export class DataService {
     colors: [
       {
         stop: 0,
-        color: 'red',
+        color: '#d7191c',
         title: 'Low'
       },
       {
         stop: .33,
-        color: 'yellow',
+        color: '#fdae61',
         title: 'Medium Low'
       },
       {
         stop: 5,
-        color: 'green',
+        color: '#ffffbf',
         title: 'Medium'
       },
       {
         stop: .75,
-        color: 'blue',
+        color: '#abd9e9',
         title: 'Medium High'
       },
       {
         stop: 1,
-        color: 'violet',
+        color: '#2c7bb6',
         title: 'High'
       }
     ],
@@ -46,22 +46,22 @@ export class DataService {
      },
      {
        "year": 2012,
-       "value": 32.56,
+       "value": 47.56,
        "iso": "AL"
      },
      {
        "year": 2012,
-       "value": 26.62,
+       "value": 86.62,
        "iso": "DZ"
      },
      {
        "year": 2012,
-       "value": 16.18,
+       "value": 63.18,
        "iso": "AO"
      },
      {
        "year": 2012,
-       "value": 30.26,
+       "value": 75.26,
        "iso": "AG"
      },
      {
@@ -71,17 +71,17 @@ export class DataService {
      },
      {
        "year": 2012,
-       "value": 32.3,
+       "value": 99.3,
        "iso": "AM"
      },
      {
        "year": 2012,
-       "value": 37.08,
+       "value": 82.08,
        "iso": "AU"
      },
      {
        "year": 2012,
-       "value": 42.4,
+       "value": 14.4,
        "iso": "AT"
      },
      {
@@ -91,27 +91,27 @@ export class DataService {
      },
      {
        "year": 2012,
-       "value": 31.54,
+       "value": 55.54,
        "iso": "BS"
      },
      {
        "year": 2012,
-       "value": 30.07,
+       "value": 63.07,
        "iso": "BH"
      },
      {
        "year": 2012,
-       "value": 24.7,
+       "value": 8.7,
        "iso": "BD"
      },
      {
        "year": 2012,
-       "value": 36.68,
+       "value": 47.68,
        "iso": "BB"
      },
      {
        "year": 2012,
-       "value": 39.15,
+       "value": 25.15,
        "iso": "BY"
      },
      {
@@ -121,32 +121,32 @@ export class DataService {
      },
      {
        "year": 2012,
-       "value": 22.69,
+       "value": 56.69,
        "iso": "BZ"
      },
      {
        "year": 2012,
-       "value": 18.3,
+       "value": 2.3,
        "iso": "BJ"
      },
      {
        "year": 2012,
-       "value": 25.29,
+       "value": 81.29,
        "iso": "BT"
      },
      {
        "year": 2012,
-       "value": 22.14,
+       "value": 74.14,
        "iso": "BO"
      },
      {
        "year": 2012,
-       "value": 39.23,
+       "value": 56.23,
        "iso": "BA"
      },
      {
        "year": 2012,
-       "value": 22.33,
+       "value": 33.33,
        "iso": "BW"
      },
      {
@@ -181,7 +181,7 @@ export class DataService {
      },
      {
        "year": 2012,
-       "value": 18.18,
+       "value": 85.18,
        "iso": "CM"
      },
      {
@@ -191,7 +191,7 @@ export class DataService {
      },
      {
        "year": 2012,
-       "value": 19.59,
+       "value": 3.59,
        "iso": "CF"
      },
      {
@@ -231,7 +231,7 @@ export class DataService {
      },
      {
        "year": 2012,
-       "value": 18.96,
+       "value": 37.96,
        "iso": "CI"
      },
      {
@@ -266,22 +266,22 @@ export class DataService {
      },
      {
        "year": 2012,
-       "value": 40.95,
+       "value": 69.95,
        "iso": "DK"
      },
      {
        "year": 2012,
-       "value": 22.55,
+       "value": 79.55,
        "iso": "DJ"
      },
      {
        "year": 2012,
-       "value": 25.53,
+       "value": 70.53,
        "iso": "DO"
      },
      {
        "year": 2012,
-       "value": 25.83,
+       "value": 29.83,
        "iso": "EC"
      },
      {
@@ -291,12 +291,12 @@ export class DataService {
      },
      {
        "year": 2012,
-       "value": 23.78,
+       "value": 3.78,
        "iso": "SV"
      },
      {
        "year": 2012,
-       "value": 20.49,
+       "value": 40.49,
        "iso": "GQ"
      },
      {
@@ -306,12 +306,12 @@ export class DataService {
      },
      {
        "year": 2012,
-       "value": 40.78,
+       "value": 77.78,
        "iso": "EE"
      },
      {
        "year": 2012,
-       "value": 17.93,
+       "value": 7.93,
        "iso": "ET"
      },
      {
@@ -321,7 +321,7 @@ export class DataService {
      },
      {
        "year": 2012,
-       "value": 42.24,
+       "value": 59.24,
        "iso": "FI"
      },
      {

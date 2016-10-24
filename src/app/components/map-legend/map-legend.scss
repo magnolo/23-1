@@ -7,4 +7,32 @@
     position: absolute;
     right: 10px;
     z-index: 1;
+
+    .legend{
+      display:flex;
+      flex-direction: column;
+      .item{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        .title{
+          flex: 1;
+          padding-right: 10px;
+          text-align: right;
+        }
+        .color{
+          align-self: center;
+          .box{
+            width:1em;
+            height:1em;
+            display:flex;
+            border:1px solid;
+          }
+
+        }
+        .value{
+
+        }
+      }
+    }
 }
