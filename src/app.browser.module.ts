@@ -5,14 +5,14 @@ import { UniversalModule } from 'angular2-universal/browser'; // for AoT we need
 
 import { App } from './app/app';
 
-import { MapComponent } from './app/modules/map/map.component';
-import { MapService } from './app/modules/map/map.service';
-import { MapUtils} from './app/modules/map/map.utils';
+import { MapComponent } from './app/components/map/map.component';
+import { MapService } from './app/services/map.service';
+import { MapUtils} from './app/utilities/map.utils';
 
 import { DataService } from './app/services/data.service';
 import { StyleService } from './app/services/style.service';
 
-import { LegendComponent} from './app/modules/legend/legend.component';
+import { LegendComponent} from './app/components/legend/legend.component';
 
 @NgModule({
   bootstrap: [ App ],

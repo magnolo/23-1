@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import { Map, LngLat, Layer, VectorSource, MapboxOptions } from 'mapbox-gl';
-import { MapUtils} from './map.utils';
+import { MapUtils} from './../utilities/map.utils';
 /**
  * The MapService manages the MapboxGL Map
  * and provides the functionality for manipulating it.

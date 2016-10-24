@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MapService } from './map.service';
+import { MapService } from './../../services/map.service';
 import { StyleService } from './../../services/style.service';
 import { LegendComponent } from '../legend/legend.component';
 
