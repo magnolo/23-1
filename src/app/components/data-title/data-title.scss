@@ -1,5 +1,7 @@
 :host {
 	font-size: 3em;
 	color: #666666;
-	padding: 10px;
+	> div{
+		padding: 10px;
+	}
 }

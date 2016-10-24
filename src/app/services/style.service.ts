@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
 import { scaleLinear, scaleQuantile } from 'd3-scale';
 import { min, max, median, extent, range } from 'd3-array';
-import { interpolateHcl } from 'd3-interpolate';
+import { interpolateRgbBasis } from 'd3-interpolate';
 import { Indicator } from '../core/indicator.class';
 
 /**
@@ -71,6 +71,7 @@ export class StyleService {
           return entry.value
         })))
         .range([0,100]);
+
 
       return this.data.colors.map((item) => {
         item.value = dataScale(item.stop);
