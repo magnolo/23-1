@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MapService } from './../../services/map.service';
 import { StyleService } from './../../services/style.service';
 import { LegendComponent } from '../legend/legend.component';
+import { MapTitleComponent } from '../map-title/map-title.component';
 
 /**
  * This component implements the MapService and initializes the Map

@@ -110,4 +110,9 @@ export class DataService {
     return this.mockData;
   }
 
+  //Returns Tile of Data
+  getTitle() {
+    return this.mockData.title;
+  }
+
 }

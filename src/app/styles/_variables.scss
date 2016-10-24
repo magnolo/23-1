@@ -1,1 +1,15 @@
+//Typography
+//Typo Base
+$heading1: 3em;
+$text-size: 1em;
+
+//Typo Specific
+$title-size: $heading1;
+
+//Colors
+$grey: #666666;
+$dark: #222222;
+
 $base-color: #ff0000;
+$title-color: $grey;
+$text-color: $dark;
