@@ -17,7 +17,7 @@ var commonConfig = {
       { test: /\.html$/, loader: 'raw-loader' },
       { test: /\.css$/, loader: 'raw-loader' },
       { test: /\.json$/, loader: 'json-loader' },
-      { test: /\.scss$/, exclude: /node_modules/, loaders: ['raw-loader', 'sass-loader']},
+      { test: /\.scss$/, exclude: /node_modules/, loaders: ['raw-loader','sass-loader']},
       { test: /\.js$/, include: path.resolve(__dirname, 'node_modules/mapbox-gl/js/render/shaders.js'), loader: 'transform/cacheable?brfs'}
     ],
   },
