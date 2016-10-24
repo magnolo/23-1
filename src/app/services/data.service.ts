@@ -1152,4 +1152,9 @@ export class DataService {
     return this.mockData.title;
   }
 
+  //Returns Data Source
+  getDataSource() {
+    return this.mockData.source;
+  }
+
 }

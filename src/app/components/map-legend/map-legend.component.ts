@@ -5,12 +5,12 @@ import { StyleService } from './../../services/style.service';
 
 
 @Component({
-  selector: 'legend',
-  template: require('./legend.component.html'),
-  styleUrls:['./legend.scss']
+  selector: 'map-legend',
+  template: require('./map-legend.component.html'),
+  styleUrls:['./map-legend.scss']
 })
 
-export class LegendComponent implements OnInit {
+export class MapLegendComponent implements OnInit {
 
   items: IndicatorColorStop[];
   //root = select(this.el);

@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from './../../services/data.service';
 
 @Component({
-  selector: 'map-title',
-  template: require('./map-title.component.html'),
-	styleUrls:['./map-title.scss']
+  selector: 'data-title',
+  template: require('./data-title.component.html'),
+	styleUrls: ['./data-title.scss']
 })
 
-export class MapTitleComponent implements OnInit {
+export class DataTitleComponent implements OnInit {
 
 	title: string;
 
@@ -16,7 +16,6 @@ export class MapTitleComponent implements OnInit {
   ngOnInit() {
 
 		this.title = this.DataService.getTitle();
-		console.log("Map Title: " + this.title);
 
 	}
 

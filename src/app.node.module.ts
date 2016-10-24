@@ -5,19 +5,21 @@ import { UniversalModule } from 'angular2-universal/node'; // for AoT we need to
 
 import { App } from './app/app';
 
-import { MapComponent } from './app/components/map/map.component';
-import { MapService } from './app/services/map.service';
-import { MapUtils} from './app/utilities/map.utils';
-
 import { DataService } from './app/services/data.service';
 import { StyleService } from './app/services/style.service';
+import { MapService } from './app/services/map.service';
 
-import { LegendComponent} from './app/components/legend/legend.component';
-import { MapTitleComponent } from './app/components/map-title/map-title.component';
+import { MapUtils} from './app/utilities/map.utils';
+
+import { MapComponent } from './app/components/map/map.component';
+import { MapLegendComponent} from './app/components/map-legend/map-legend.component';
+
+import { DataTitleComponent } from './app/components/data-title/data-title.component';
+import { DataSourceComponent } from './app/components/data-source/data-source.component';
 
 @NgModule({
   bootstrap: [ App ],
-  declarations: [ App, MapComponent, LegendComponent, MapTitleComponent ],
+  declarations: [ App, MapComponent, MapLegendComponent, DataTitleComponent, DataSourceComponent ],
   imports: [
     UniversalModule, // NodeModule, NodeHttpModule, and NodeJsonpModule are included
     FormsModule,
