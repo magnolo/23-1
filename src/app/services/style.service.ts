@@ -3,7 +3,7 @@ import { DataService } from './data.service';
 import { scaleLinear, scaleQuantile } from 'd3-scale';
 import { min, max, median, extent, range } from 'd3-array';
 import { interpolateRgbBasis } from 'd3-interpolate';
-import { Indicator } from '../core/indicator.class';
+import { Indicator } from '../core/models/indicator.model';
 
 /**
 * The StyleService manages the MapBoxGl Styles

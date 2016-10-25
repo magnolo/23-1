@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, Renderer } from '@angular/core';
-import { IndicatorColorStop } from './../../core/indicatorColorStop.class';
+import { IndicatorColorStop } from './../../core/models/indicator-color-stop.model';
 import { StyleService } from './../../services/style.service';
 //import { select } from 'd3-selection';
 

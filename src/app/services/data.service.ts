@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Indicator } from '../core/indicator.class';
+import { Indicator } from '../core/models/indicator.model';
 
 @Injectable()
 export class DataService {
