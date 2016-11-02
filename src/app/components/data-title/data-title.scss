@@ -1,7 +1,8 @@
 :host {
 	font-size: 3em;
 	color: #666666;
-	> div{
-		padding: 10px;
-	}
+	position: fixed;
+	top: 5px;
+	left: 10px;
+	z-index: 1;
 }

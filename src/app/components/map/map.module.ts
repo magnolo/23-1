@@ -8,6 +8,7 @@ import { MapService } from './../../services/map.service';
 import { MapUtils} from './../../utilities/map.utils';
 
 import { MapComponent } from './map.component';
+import { MapLayerComponent } from './../map-layer/map-layer.component';
 import { MapLegendComponent} from './../map-legend/map-legend.component';
 import { DataTitleComponent } from './../data-title/data-title.component';
 import { DataSourceComponent } from './../data-source/data-source.component';
@@ -16,6 +17,7 @@ import { DataSourceComponent } from './../data-source/data-source.component';
   imports: [UniversalModule],
   declarations: [
     MapComponent,
+    MapLayerComponent,
     MapLegendComponent,
     DataTitleComponent,
     DataSourceComponent
@@ -27,4 +29,5 @@ import { DataSourceComponent } from './../data-source/data-source.component';
     StyleService
   ]
 })
+
 export class MapModule { }
