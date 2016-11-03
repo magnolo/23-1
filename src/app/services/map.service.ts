@@ -24,9 +24,10 @@ export class MapService {
     minZoom: 0,
     center: [17, 42],
     maxBounds: [
-      [-180, -90],
-      [180, 90]
-    ]
+      [-180, -85],
+      [180, 85]
+    ],
+    dragRotate: false
   };
 
   /**
