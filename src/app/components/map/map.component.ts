@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MapService } from './../../services/map.service';
 import { StyleService } from './../../services/style.service';
 import { MapLayerComponent } from "../map-layer/map-layer.component";
+import { BubbleLayerComponent } from './../bubble-layer/bubble-layer.component';
 import { MapLegendComponent } from '../map-legend/map-legend.component';
 import { DataTitleComponent } from '../data-title/data-title.component';
 import { DataSourceComponent } from '../data-source/data-source.component';

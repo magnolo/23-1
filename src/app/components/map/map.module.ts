@@ -12,15 +12,19 @@ import { MapLayerComponent } from './../map-layer/map-layer.component';
 import { MapLegendComponent} from './../map-legend/map-legend.component';
 import { DataTitleComponent } from './../data-title/data-title.component';
 import { DataSourceComponent } from './../data-source/data-source.component';
+import { BubbleLayerComponent } from './../bubble-layer/bubble-layer.component';
+import { BubbleComponent } from './../bubble/bubble.component';
 
 @NgModule({
   imports: [UniversalModule],
   declarations: [
     MapComponent,
     MapLayerComponent,
+    BubbleLayerComponent,
     MapLegendComponent,
     DataTitleComponent,
-    DataSourceComponent
+    DataSourceComponent,
+    BubbleComponent
   ],
   providers: [
     MapService,

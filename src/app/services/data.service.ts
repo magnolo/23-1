@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Indicator } from '../core/models/indicator.model';
+import { GeoJSONSource } from 'mapbox-gl';
+import * as D3 from 'd3';
 
 @Injectable()
 export class DataService {
@@ -967,6 +969,15 @@ export class DataService {
   //Returns Data Source
   getDataSource() {
     return this.mockData.source;
+  }
+
+  getGeoJsonData(): any {
+    D3.json('assets/earthquakes2015.geojson',
+      (err, data) => {
+        if (err) throw err;
+        return data;
+      }
+    );
   }
 
 }

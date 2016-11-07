@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
-import { Map, LngLat, Layer, VectorSource, MapboxOptions } from 'mapbox-gl';
+import { Map, LngLat, Layer, VectorSource, MapboxOptions, GeoJSONSource } from 'mapbox-gl';
 import { MapUtils} from './../utilities/map.utils';
 /**
  * The MapService manages the MapboxGL Map
@@ -74,9 +74,9 @@ export class MapService {
   /**
    * Adding a data source to the map
    * @param  {string}       id     The identifier of the data source
-   * @param  {VectorSource} source The VectorSource object containing the url
+   * @param  {VectorSource | GeoJSONSource } source The VectorSource object containing the url
    */
-  addDataSource(id: string, source: VectorSource) {
+  addDataSource(id: string, source: VectorSource | GeoJSONSource) {
 
     this._mapLoaded(() => this.map.addSource(id, source));
 
