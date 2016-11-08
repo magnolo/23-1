@@ -20,7 +20,6 @@ import { GeoJSONSource } from 'mapbox-gl';
 })
 export class BubbleLayerComponent implements OnInit {
   bubblesId: string;
-  //bubblesData: GeoJSONSource = new GeoJSONSource();
 
   constructor(private mapService: MapService, private dataService: DataService, public http: Http) {
 		this.bubblesId = "MockPoints";
