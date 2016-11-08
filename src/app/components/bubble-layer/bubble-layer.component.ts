@@ -20,7 +20,7 @@ import { GeoJSONSource } from 'mapbox-gl';
 })
 export class BubbleLayerComponent implements OnInit {
   bubblesId: string;
-  //bubblesData: GeoJSONSource = new GeoJSONSource();
+  bubblesData: GeoJSONSource;
 
   constructor(private mapService: MapService, private dataService: DataService, public http: Http) {
 		this.bubblesId = "MockPoints";
@@ -32,18 +32,20 @@ export class BubbleLayerComponent implements OnInit {
     this.http.request('assets/earthquakes2015.geojson')
       .subscribe((res: Response) => {
         console.log(res.json());
-        this.mapService.addDataSource(this.bubblesId, res.json());
+
+        this.mapService.addDataSource(this.bubblesId, {type:'geojson', data:res.json()});
+        this.mapService.addLayer({
+          id: "mockBubble",
+          type: "circle",
+          source: this.bubblesId
+        },'water-label');
       });
 
 	}
 
   ngAfterViewInit() {
 
-    this.mapService.addLayer({
-      id: "mockBubble",
-      type: "circle",
-      source: this.bubblesId
-    },'water-label');
+
 
   }
 }
