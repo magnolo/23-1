@@ -29,11 +29,13 @@ export class BubbleLayerComponent implements OnInit {
 
 	ngOnInit() {
 
+
     this.http.request('assets/earthquakes2015.geojson')
       .subscribe((res: Response) => {
         console.log(res.json());
 
         this.mapService.addDataSource(this.bubblesId, {type:'geojson', data:res.json()});
+
         this.mapService.addLayer({
           id: "mockBubble",
           type: "circle",
