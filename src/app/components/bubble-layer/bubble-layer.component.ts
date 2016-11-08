@@ -20,6 +20,10 @@ import { GeoJSONSource } from 'mapbox-gl';
 })
 export class BubbleLayerComponent implements OnInit {
   bubblesId: string;
+<<<<<<< HEAD
+=======
+  bubblesData: GeoJSONSource;
+>>>>>>> 7d0487297c4725447094649546e16cad7a0a5a7e
 
   constructor(private mapService: MapService, private dataService: DataService, public http: Http) {
 		this.bubblesId = "MockPoints";
@@ -28,10 +32,13 @@ export class BubbleLayerComponent implements OnInit {
 
 	ngOnInit() {
 
-    this.dataService.getGeoJsonData().subscribe(
-      (data) => {
-        console.log(data);
-        this.mapService.addGeoJSONDataSource(this.bubblesId, data);
+
+    this.http.request('assets/earthquakes2015.geojson')
+      .subscribe((res: Response) => {
+        console.log(res.json());
+
+        this.mapService.addDataSource(this.bubblesId, {type:'geojson', data:res.json()});
+
         this.mapService.addLayer({
           id: "mockBubble",
           type: "circle",
