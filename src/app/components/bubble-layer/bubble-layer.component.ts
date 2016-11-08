@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { MapService } from './../../services/map.service';
 import { DataService } from './../../services/data.service';
+import { Http, Response } from '@angular/http';
 import { GeoJSONSource } from 'mapbox-gl';
 
 //Check https://www.mapbox.com/mapbox-gl-js/example/timeline-animation/ for ideas
@@ -19,26 +20,30 @@ import { GeoJSONSource } from 'mapbox-gl';
 })
 export class BubbleLayerComponent implements OnInit {
   bubblesId: string;
-  bubblesData: GeoJSONSource;
+  //bubblesData: GeoJSONSource = new GeoJSONSource();
 
-  constructor(private mapService: MapService, private dataService: DataService) {
+  constructor(private mapService: MapService, private dataService: DataService, public http: Http) {
 		this.bubblesId = "MockPoints";
-    this.bubblesData = new GeoJSONSource({data: this.dataService.getGeoJsonData()});
+
 	}
 
 	ngOnInit() {
 
-
+    this.http.request('assets/earthquakes2015.geojson')
+      .subscribe((res: Response) => {
+        console.log(res.json());
+        this.mapService.addDataSource(this.bubblesId, res.json());
+      });
 
 	}
 
   ngAfterViewInit() {
-    this.mapService.addDataSource(this.bubblesId, this.bubblesData);
+
     this.mapService.addLayer({
       id: "mockBubble",
       type: "circle",
-      source: "MockPoints"
+      source: this.bubblesId
     },'water-label');
-	}
 
+  }
 }
