@@ -29,21 +29,22 @@ export class BubbleLayerComponent implements OnInit {
 
 	ngOnInit() {
 
-    this.http.request('assets/earthquakes2015.geojson')
-      .subscribe((res: Response) => {
-        console.log(res.json());
-        this.mapService.addDataSource(this.bubblesId, res.json());
+    this.dataService.getGeoJsonData().subscribe(
+      (data) => {
+        console.log(data);
+        this.mapService.addGeoJSONDataSource(this.bubblesId, data);
+        this.mapService.addLayer({
+          id: "mockBubble",
+          type: "circle",
+          source: this.bubblesId
+        },'water-label');
       });
 
 	}
 
   ngAfterViewInit() {
 
-    this.mapService.addLayer({
-      id: "mockBubble",
-      type: "circle",
-      source: this.bubblesId
-    },'water-label');
+
 
   }
 }

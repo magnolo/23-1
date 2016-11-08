@@ -83,6 +83,17 @@ export class MapService {
   }
 
   /**
+   * Adding a data source to the map
+   * @param  {string}       id     The identifier of the data source
+   * @param  {VectorSource | GeoJSONSource } source The VectorSource object containing the url
+   */
+  addGeoJSONDataSource(id: string, data: any) {
+
+    this._mapLoaded(() => this.map.addSource(id, {type:'geojson', data:data}));
+
+  }
+
+  /**
    * Remove a datasource from the map by specific id
    * @param  {string} sourceId The identifier of the source which should be removed
    */
