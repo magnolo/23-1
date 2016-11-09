@@ -43,6 +43,7 @@
     "angular2-universal": "~2.1.0-rc.1",
     "angular2-universal-polyfills": "~2.1.0-rc.1",
     "body-parser": "^1.15.2",
+    "chroma-js": "^1.2.1",
     "d3": "^4.2.7",
     "express": "^4.14.0",
     "mapbox-gl": "^0.26.0",

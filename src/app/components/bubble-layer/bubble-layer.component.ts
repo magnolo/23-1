@@ -29,10 +29,9 @@ export class BubbleLayerComponent implements OnInit {
   ngOnInit() {
 
 
-    this.http.request('assets/earthquakes2015.geojson')
-      .subscribe((res: Response) => {
+    this.dataService.getGeoJsonData().subscribe(
 
-        let data = res.json();
+      (data) => {
 
         let steps = 3;
         let range = extent(data.features.map((item) => { return item.properties.mag }));
