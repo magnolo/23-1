@@ -9,7 +9,6 @@ import {
 import { MapService } from './../../services/map.service';
 import { DataService } from './../../services/data.service';
 import { StyleService } from './../../services/style.service';
-import { Http, Response } from '@angular/http';
 import { GeoJSONSource } from 'mapbox-gl';
 import {  extent } from 'd3-array';
 
@@ -21,13 +20,11 @@ import {  extent } from 'd3-array';
 export class BubbleLayerComponent implements OnInit {
   bubblesId: string;
 
-  constructor(private mapService: MapService, private dataService: DataService, private styleService: StyleService, public http: Http) {
+  constructor(private mapService: MapService, private dataService: DataService, private styleService: StyleService) {
     this.bubblesId = "MockPoints";
-
   }
 
   ngOnInit() {
-
 
     this.dataService.getGeoJsonData().subscribe(
 
@@ -41,7 +38,7 @@ export class BubbleLayerComponent implements OnInit {
         this.mapService.addDataSource(this.bubblesId, {
           type: 'geojson',
           data: data,
-          cluster: false,
+          cluster: true,
           clusterMaxZoom: 7,
           clusterRadius: 100
         });
@@ -115,4 +112,5 @@ export class BubbleLayerComponent implements OnInit {
   ngAfterViewInit() {
 
   }
+
 }
