@@ -22,10 +22,6 @@ import {  extent } from 'd3-array';
 })
 export class BubbleLayerComponent implements OnInit {
   bubblesId: string;
-<<<<<<< HEAD
-=======
-  bubblesData: GeoJSONSource;
->>>>>>> 7d0487297c4725447094649546e16cad7a0a5a7e
 
   constructor(private mapService: MapService, private dataService: DataService, private styleService: StyleService, public http: Http) {
     this.bubblesId = "MockPoints";
