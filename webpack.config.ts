@@ -7,7 +7,7 @@ var commonConfig = {
     extensions: ['.ts', '.js', '.json'],
     alias: {
     //  'mapbox-gl-css': path.resolve('./node_modules/mapbox-gl/dist/mapbox-gl.css'),
-      'mapbox-gl': path.resolve('./node_modules/mapbox-gl/dist/mapbox-gl.js'),
+       'mapbox-gl':path.resolve('./node_modules/mapbox-gl/dist/mapbox-gl.js')
     }
   },
   module: {
@@ -22,9 +22,7 @@ var commonConfig = {
     ],
   },
   plugins: [
-    // new webpack.ProvidePlugin({
-    //   'd3': 'd3'
-    // }),
+
     new webpack.ContextReplacementPlugin(
       // The (\\|\/) piece accounts for path separators in *nix and Windows
       /angular(\\|\/)core(\\|\/)src(\\|\/)linker/,

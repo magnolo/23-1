@@ -23,10 +23,10 @@ export class MapService {
     zoom: 3,
     minZoom: 0,
     center: [17, 42],
-    maxBounds: [
-      [-180, -85],
-      [180, 85]
-    ],
+    // maxBounds: [
+    //   [-180, -85],
+    //   [180, 85]
+    // ],
     dragRotate: false
   };
 
@@ -106,9 +106,9 @@ export class MapService {
    * @param  {Layer}  layer        The layer object of the layer, type an dataSource
    * @param  {string} aboveLayerId Above which layer the new one will be placed
    */
-  addLayer(layer: Layer, aboveLayerId: string) {
+  addLayer(layer: Layer, aboveLayerId?: string) {
 
-    this._mapLoaded(() => this.map.addLayer(layer, aboveLayerId || 'water-label'));
+    this._mapLoaded(() => this.map.addLayer(layer, aboveLayerId || 'waterway-label'));
 
   }
 

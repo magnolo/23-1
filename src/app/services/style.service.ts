@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
-import { scaleLinear, scaleQuantile } from 'd3-scale';
+import { scaleLinear, scaleBand } from 'd3-scale';
 import { min, max, median, extent, range } from 'd3-array';
 import { interpolateRgbBasis } from 'd3-interpolate';
 import { Indicator } from '../core/models/indicator.model';
+import * as D3 from 'd3';
+import * as chroma from 'chroma-js';
 
 /**
 * The StyleService manages the MapBoxGl Styles
@@ -101,4 +103,17 @@ export class StyleService {
     });
   }
 
+
+  getBubbleStyle(min, max, colors, steps){
+    let range = [];
+    let s = chroma.scale(colors).mode('lab').out('hex').domain([min,max]);
+    let interval = (max - min) / steps;
+
+    for(let i = 0; i <= steps; i++){
+      range.push([min + (i * interval),  s(min + (i * interval))]);
+    }
+    console.log(range);
+
+    return range;
+  }
 }
