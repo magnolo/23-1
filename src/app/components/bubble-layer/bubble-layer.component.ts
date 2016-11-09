@@ -9,10 +9,10 @@ import {
 import { MapService } from './../../services/map.service';
 import { DataService } from './../../services/data.service';
 import { StyleService } from './../../services/style.service';
-import { Http, Response } from '@angular/http';
 import { GeoJSONSource, Popup } from 'mapbox-gl';
 import { extent } from 'd3-array';
 import { BubbleLayerOptions } from '../../core/models/bubble-layer-options.model';
+
 
 @Component({
   selector: 'bubble-layer',
@@ -33,13 +33,12 @@ export class BubbleLayerComponent implements OnInit {
     }
   };
 
-  constructor(private mapService: MapService, private dataService: DataService, private styleService: StyleService, public http: Http) {
+  constructor(private mapService: MapService, private dataService: DataService, private styleService: StyleService) {
     this.bubblesId = "MockPoints";
     this.bubblesLayer = "BubblesLayer";
   }
 
   ngOnInit() {
-
 
     this.dataService.getGeoJsonData().subscribe(
 
@@ -149,10 +148,6 @@ export class BubbleLayerComponent implements OnInit {
                 y:e.point.y
               }
             }
-        
-            // popup.setLngLat(feature.geometry.coordinates)
-            //   .setHTML(feature.properties.place)
-            //   .addTo(this.mapService.map);
           }
           else{
             this.tooltip = {
@@ -173,4 +168,5 @@ export class BubbleLayerComponent implements OnInit {
   ngAfterViewInit() {
 
   }
+
 }

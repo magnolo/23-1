@@ -1,0 +1,165 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [0, 0]
+      },
+      "properties": {
+        "Country.or.Area": "Mongolia",
+        "Year.s.": "2011",
+        "Value": "97.4",
+        "iso": "MN",
+        "indicator1": " 6",
+        "indicator2": "47",
+        "indicator3": "30"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [0, 0]
+      },
+      "properties": {
+        "Country.or.Area": "Latvia",
+        "Year.s.": "2011",
+        "Value": "99.8",
+        "iso": "LV",
+        "indicator1": "48",
+        "indicator2": "34",
+        "indicator3": "33"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [0, 0]
+      },
+      "properties": {
+        "Country.or.Area": "Georgia",
+        "Year.s.": "2011",
+        "Value": "99.7",
+        "iso": "GE",
+        "indicator1": "40",
+        "indicator2": "35",
+        "indicator3": "43"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [0, 0]
+      },
+      "properties": {
+        "Country.or.Area": "Hungary",
+        "Year.s.": "2011",
+        "Value": "99.0",
+        "iso": "HU",
+        "indicator1": "29",
+        "indicator2": "32",
+        "indicator3": "47"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [0, 0]
+      },
+      "properties": {
+        "Country.or.Area": "Portugal",
+        "Year.s.": "2011",
+        "Value": "95.4",
+        "iso": "PT",
+        "indicator1": "35",
+        "indicator2": "29",
+        "indicator3": "27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [0, 0]
+      },
+      "properties": {
+        "Country.or.Area": "Estonia",
+        "Year.s.": "2011",
+        "Value": "99.8",
+        "iso": "EE",
+        "indicator1": " 8",
+        "indicator2": "25",
+        "indicator3": "32"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [0, 0]
+      },
+      "properties": {
+        "Country.or.Area": "Ukraine",
+        "Year.s.": "2011",
+        "Value": "99.7",
+        "iso": "UA",
+        "indicator1": "14",
+        "indicator2": "41",
+        "indicator3": "44"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [0, 0]
+      },
+      "properties": {
+        "Country.or.Area": "South Africa",
+        "Year.s.": "2011",
+        "Value": "93.0",
+        "iso": "ZA",
+        "indicator1": "22",
+        "indicator2": "49",
+        "indicator3": "27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [0, 0]
+      },
+      "properties": {
+        "Country.or.Area": "Angola",
+        "Year.s.": "2011",
+        "Value": "70.4",
+        "iso": "AO",
+        "indicator1": "27",
+        "indicator2": "23",
+        "indicator3": "50"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [0, 0]
+      },
+      "properties": {
+        "Country.or.Area": "Antigua and Barbuda",
+        "Year.s.": "2011",
+        "Value": "99.0",
+        "iso": "AG",
+        "indicator1": "30",
+        "indicator2": "27",
+        "indicator3": "48"
+      }
+    }
+  ]
+}

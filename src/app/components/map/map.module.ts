@@ -13,6 +13,7 @@ import { MapLegendComponent} from './../map-legend/map-legend.component';
 import { DataTitleComponent } from './../data-title/data-title.component';
 import { DataSourceComponent } from './../data-source/data-source.component';
 import { BubbleLayerComponent } from './../bubble-layer/bubble-layer.component';
+import { PointLayerComponent } from './../point-layer/point-layer.component';
 import { BubbleComponent } from './../bubble/bubble.component';
 import { TooltipComponent } from './../tooltip/tooltip.component';
 
@@ -22,6 +23,7 @@ import { TooltipComponent } from './../tooltip/tooltip.component';
     MapComponent,
     MapLayerComponent,
     BubbleLayerComponent,
+    PointLayerComponent,
     MapLegendComponent,
     DataTitleComponent,
     DataSourceComponent,

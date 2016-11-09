@@ -974,9 +974,24 @@ export class DataService {
     return this.mockData.source;
   }
 
-  getGeoJsonData() {
-    // return this.http.request('assets/earthquakes2015.geojson').map((res: Response) => res.json());
-    return this.http.request('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson').map((res: Response) => res.json());
+  getGeoJsonData(id?:string) {
+
+    let source:string;
+
+
+    switch (id) {
+      case 'quakeMock':
+        source = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson';
+        break;
+      case 'deathMock':
+        source = 'assets/UCDP.geojson';
+        break;
+      default:
+        source = 'assets/earthquakes2015.geojson';
+    }
+
+    return this.http.request(source).map((res: Response) => res.json());;
+
   }
 
 }
