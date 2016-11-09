@@ -974,8 +974,26 @@ export class DataService {
     return this.mockData.source;
   }
 
-  getGeoJsonData() {
-    return this.http.request('assets/earthquakes2015.geojson').map((res: Response) => res.json());
+  getGeoJsonData(id?:string) {
+
+    let source:string;
+
+
+    switch (id) {
+      case 'quakeMock':
+        source = 'assets/earthquakes2015.geojson';
+        break;
+      case 'deathMock':
+        source = 'assets/UCDP.geojson';
+        break;
+      default:
+        source = 'assets/earthquakes2015.geojson';
+    }
+
+    console.log(id);
+    console.log(source);
+
+    return this.http.request(source).map((res: Response) => res.json());;
   }
 
 }
