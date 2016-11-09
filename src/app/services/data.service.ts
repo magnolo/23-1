@@ -10,7 +10,7 @@ export class DataService {
 
   mockData: any = {
     id: 1,
-    title: 'Hello World Indicator',
+    title: 'Earthquakes likes hell',
     source: {
       title: 'Anuar Corp.',
       url: 'http://www.manfredwalder.at'
@@ -975,7 +975,8 @@ export class DataService {
   }
 
   getGeoJsonData() {
-    return this.http.request('assets/earthquakes2015.geojson').map((res: Response) => res.json());
+    // return this.http.request('assets/earthquakes2015.geojson').map((res: Response) => res.json());
+    return this.http.request('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson').map((res: Response) => res.json());
   }
 
 }

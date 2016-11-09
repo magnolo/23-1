@@ -1,0 +1,8 @@
+<div id="tooltip" class="dark" [ngClass]="{'hidden': data.position.x == 0}" [ngStyle]="{'transform':'translateX('+data.position.x+'px) translateY('+data.position.y+'px)'}">
+  <div class="dot"></div>
+  <div class="line"></div>
+  <div class="bubble">
+    <span class="" id="value">{{ data.value }}</span>
+    <div id="address" class="small quiet">{{ data.address }}</div>
+  </div>
+</div>

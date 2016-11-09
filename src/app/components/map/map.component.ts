@@ -37,7 +37,7 @@ export class MapComponent implements OnInit {
     //let colorCodes = this.styleService.colorChoroplethsByValue();
 
     //Initialize the MapboxGl Map, no params means default values
-    this.mapService.initMap({minZoom:2});
+    this.mapService.initMap({minZoom:0});
 
     //Add the vector data source for the global admin boundaries
     /*this.mapService.addDataSource(this.adminDataSourceID, {

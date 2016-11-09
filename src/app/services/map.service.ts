@@ -19,7 +19,8 @@ export class MapService {
   layerDefaults: Layer;
   mapDefaults: MapboxOptions = {
     container: 'map',
-    style: 'mapbox://styles/mapbox/light-v9',
+    style: 'mapbox://styles/mapbox/dark-v9?optimize=true',
+    // style: 'mapbox://styles/mapbox/light-v9',
     zoom: 3,
     minZoom: 0,
     center: [17, 42],
@@ -160,7 +161,7 @@ export class MapService {
    * @param  {string}   event   Type of the event (click, mousemove...)
    * @param  {Function} fn      The function that gets executed when the event happens. Injects the active feature
    */
-  setLayerEvent(layerId: string, event: string, fn: Function, showClickCursor: boolean = false) {
+  setLayerEvent(layerId: string, event: string, fn: Function, showCursor: boolean = false) {
 
     this._mapLoaded(() => {
 
@@ -171,7 +172,10 @@ export class MapService {
         });
         if (features.length > 0) {
           let feature = features[0];
-          fn(feature);
+          fn(feature, e);
+        }
+        else{
+          fn(false);
         }
 
       });
@@ -179,13 +183,13 @@ export class MapService {
       /**
        * checks if there should be a cursor on hovering the layer feature
        */
-      if (showClickCursor) {
+      if (showCursor) {
         this.map
           .on('mousemove', (e) => {
             let features = this.map.queryRenderedFeatures(e.point, {
               layers: [layerId]
             });
-            this.map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
+            this.map.getCanvas().style.cursor = (features.length) ? 'none' : '';
           })
       }
     });

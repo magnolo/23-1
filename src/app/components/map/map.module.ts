@@ -14,6 +14,7 @@ import { DataTitleComponent } from './../data-title/data-title.component';
 import { DataSourceComponent } from './../data-source/data-source.component';
 import { BubbleLayerComponent } from './../bubble-layer/bubble-layer.component';
 import { BubbleComponent } from './../bubble/bubble.component';
+import { TooltipComponent } from './../tooltip/tooltip.component';
 
 @NgModule({
   imports: [UniversalModule],
@@ -24,7 +25,8 @@ import { BubbleComponent } from './../bubble/bubble.component';
     MapLegendComponent,
     DataTitleComponent,
     DataSourceComponent,
-    BubbleComponent
+    BubbleComponent,
+    TooltipComponent
   ],
   providers: [
     MapService,

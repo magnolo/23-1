@@ -104,15 +104,15 @@ export class StyleService {
   }
 
 
-  getBubbleStyle(min, max, colors, steps){
+  getBubbleStyle(min, max, colors?){
+    if(!colors) colors = chroma.scale('OrRd').colors(5);
     let range = [];
     let s = chroma.scale(colors).mode('lab').out('hex').domain([min,max]);
-    let interval = (max - min) / steps;
+    let interval = (max - min) / colors.length;
 
-    for(let i = 0; i <= steps; i++){
+    for(let i = 0; i <= colors.length; i++){
       range.push([min + (i * interval),  s(min + (i * interval))]);
     }
-    console.log(range);
 
     return range;
   }
