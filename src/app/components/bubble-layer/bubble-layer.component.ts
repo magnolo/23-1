@@ -11,8 +11,6 @@ import { DataService } from './../../services/data.service';
 import { Http, Response } from '@angular/http';
 import { GeoJSONSource } from 'mapbox-gl';
 
-//Check https://www.mapbox.com/mapbox-gl-js/example/timeline-animation/ for ideas
-
 @Component({
   selector: 'bubble-layer',
   template: require('./bubble-layer.component.html'),
@@ -20,14 +18,9 @@ import { GeoJSONSource } from 'mapbox-gl';
 })
 export class BubbleLayerComponent implements OnInit {
   bubblesId: string;
-<<<<<<< HEAD
-=======
-  bubblesData: GeoJSONSource;
->>>>>>> 7d0487297c4725447094649546e16cad7a0a5a7e
 
   constructor(private mapService: MapService, private dataService: DataService, public http: Http) {
 		this.bubblesId = "MockPoints";
-
 	}
 
 	ngOnInit() {
@@ -42,15 +35,21 @@ export class BubbleLayerComponent implements OnInit {
         this.mapService.addLayer({
           id: "mockBubble",
           type: "circle",
-          source: this.bubblesId
+          source: this.bubblesId,
+          paint: {
+            "circle-opacity": 0.5,
+            "circle-color": "#FF00FF",
+            "circle-radius": 50
+          },
+          layout: {
+            "text-field":"{mag}"
+          }
         },'water-label');
       });
 
 	}
 
   ngAfterViewInit() {
-
-
 
   }
 }
