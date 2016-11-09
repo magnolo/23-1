@@ -987,7 +987,7 @@ export class DataService {
         source = 'assets/UCDP.geojson';
         break;
       default:
-        source = 'assets/earthquakes2015.geojson';
+        source = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson';
     }
 
     return this.http.request(source).map((res: Response) => res.json());;
