@@ -8,11 +8,12 @@ import { routing } from './app/app.routes';
 
 import { MapModule } from './app/components/map/map.module';
 import { CatalogComponent } from './app/components/catalog/catalog.component';
+import { ThumbnailCardComponent } from './app/components/thumbnail-card/thumbnail-card.component';
 
 
 @NgModule({
   bootstrap: [ App ],
-  declarations: [ App, CatalogComponent ],
+  declarations: [ App, CatalogComponent, ThumbnailCardComponent ],
   imports: [
     UniversalModule, // BrowserModule, HttpModule, and JsonpModule are included
     FormsModule,

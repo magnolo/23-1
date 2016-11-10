@@ -1,2 +1,1 @@
-<a [routerLink]="['/map', 'quakeMock']">Earthquakes</a>
-<a [routerLink]="['/map', 'deathMock']">Deaths</a>
+<thumbnail-card *ngFor="let item of catalog" [item]="item"></thumbnail-card>

@@ -1,0 +1,12 @@
+:host {
+	position: relative;
+	float: left;
+	.card {
+		width: 20vw;
+		background-color: #bbbbbb;
+		margin: 1em;
+		img {
+			width: 100%;
+		}
+	}
+}

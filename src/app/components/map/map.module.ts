@@ -4,6 +4,7 @@ import { UniversalModule } from 'angular2-universal/browser';
 import { DataService } from './../../services/data.service';
 import { StyleService } from './../../services/style.service';
 import { MapService } from './../../services/map.service';
+import { CatalogService } from './../../services/catalog.service';
 
 import { MapUtils} from './../../utilities/map.utils';
 
@@ -17,6 +18,7 @@ import { PointLayerComponent } from './../point-layer/point-layer.component';
 import { BubbleComponent } from './../bubble/bubble.component';
 import { TooltipComponent } from './../tooltip/tooltip.component';
 
+
 @NgModule({
   imports: [UniversalModule],
   declarations: [
@@ -28,13 +30,15 @@ import { TooltipComponent } from './../tooltip/tooltip.component';
     DataTitleComponent,
     DataSourceComponent,
     BubbleComponent,
-    TooltipComponent
+    TooltipComponent,
+
   ],
   providers: [
     MapService,
     MapUtils,
     DataService,
-    StyleService
+    StyleService,
+    CatalogService
   ]
 })
 

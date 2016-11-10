@@ -2,13 +2,17 @@
 	"indicators": [
 		{
 			"id":"quakeMock",
+			"title":"Earthquakes like hell",
+			"year":"2015",
 			"featureImg":"assets/mock-data/img/quake.png",
-			"link":"assets/mock-data/quakeMock.json"
+			"source":"assets/mock-data/quakeMock.json"
 		},
 		{
 			"id":"deathMock",
+			"title":"Death",
+			"year":"2016",
 			"featureImg":"assets/mock-data/img/death.png",
-			"link":"assets/mock-data/deathMock.json"
+			"source":"assets/mock-data/deathMock.json"
 		}
 	]
 }

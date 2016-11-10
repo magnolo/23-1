@@ -11,11 +11,7 @@ export class CatalogService {
 	//A view is a specific layer style (bubble, point, choropleth)
 	//and a specific dataset
 	getAllViews(){
-    this.dataService.getDataByUrl('assets/mock-data/catalogMock.json').subscribe(
-      data => {
-        return data;
-      }
-    );
+    return this.dataService.getDataByUrl('assets/mock-data/catalogMock.json');
   }
 
 	getView(){}

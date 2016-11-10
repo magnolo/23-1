@@ -1,3 +1,5 @@
+import { CatalogService } from './../../services/catalog.service';
+import { CatalogItem } from './../../core/models/catalog-item.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -5,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: 'catalog.component.html',
 })
 export class CatalogComponent implements OnInit {
-  constructor() {
+  catalog: [CatalogItem];
+
+  constructor(private catalogService: CatalogService) {
 
 	}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loadCatalog();
+  }
+
+  loadCatalog(){
+    this.catalogService.getAllViews().subscribe(
+      data => {
+        this.catalog = data.indicators;
+      }
+    );
+  }
 }
