@@ -42,16 +42,6 @@ export class StyleService {
       /**
        * TODO: Generate Dynamic Colors for the range
        */
-      // let colorScale = scaleLinear()
-      //   .domain(range(1, 257))
-      //   .range(this.data.colors.map((color) => {
-      //     return color.color;
-      //   }));
-      // let quantize = scaleQuantile()
-      //   .range(range(1, 257))
-      //   .domain(extent(this.data.data.map((entry) => {
-      //     return entry.value
-      //   })));
 
 
       return this.data.data.map((entry) => {
@@ -79,27 +69,7 @@ export class StyleService {
         item.value = dataScale(item.stop);
         return item;
       });
-      // return [{
-      //   value: 0,
-      //   title: 'low',
-      //   color: '#ff0000'
-      // }, {
-      //     value: 25,
-      //     title: 'medium-low',
-      //     color: '#00ff00'
-      //   }, {
-      //     value: 50,
-      //     title: 'medium',
-      //     color: '#f0f0f0'
-      //   }, {
-      //     value: 75,
-      //     title: 'medium-high',
-      //     color: '#0000ff'
-      //   }, {
-      //     value: 100,
-      //     title: 'high',
-      //     color: '#0f0f0f'
-      //   }];
+
     });
   }
 
