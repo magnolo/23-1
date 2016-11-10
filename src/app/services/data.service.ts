@@ -976,7 +976,8 @@ export class DataService {
 
   getDataById(id){
     let url:string = 'assets/mock-data/'+id+'.json';
-    return  this.getDataByUrl(url);
+
+    return  this.http.request(url).map((res: Response) => res.json());
   }
 
   getDataByUrl(url) {
