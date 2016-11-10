@@ -1,4 +1,4 @@
-<div class="legend">
+<div class="legend" [ngClass]="{'dark': options.dark}">
 <div *ngFor='let item of items' class="item">
   <div class="title">{{ item.title }} </div>
   <div class="color">

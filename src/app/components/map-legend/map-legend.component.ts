@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, Renderer } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer, Input } from '@angular/core';
 import { IndicatorColorStop } from './../../core/models/indicator-color-stop.model';
 import { StyleService } from './../../services/style.service';
 //import { select } from 'd3-selection';
@@ -11,7 +11,7 @@ import { StyleService } from './../../services/style.service';
 })
 
 export class MapLegendComponent implements OnInit {
-
+  @Input() options;
   items: IndicatorColorStop[];
   //root = select(this.el);
 

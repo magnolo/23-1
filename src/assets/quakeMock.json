@@ -1,0 +1,41 @@
+{
+  "title": "Earthquakes like hell",
+  "layer" : "bubbles",
+  "data": {
+    "type": "geojson",
+    "source" : "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson",
+    "valueField" : "mag",
+    "addressField": "place",
+    "showClusters" : false
+  },
+  "style" :{
+    "template": "dark",
+    "colors":[
+      {
+        "stop": 0,
+        "color": "#fff7ec",
+        "title": "Low"
+      },
+      {
+        "stop": 25,
+        "color": "#fdd49e",
+        "title": "Low-Medium"
+      },
+      {
+        "stop": 50,
+        "color": "#fc8d59",
+        "title": "Medium"
+      },
+      {
+        "stop": 75,
+        "color": "#d7301f",
+        "title": "Medium-High"
+      },
+      {
+        "stop": 100,
+        "color": "#7f0000",
+        "title": "High"
+      }
+    ]
+  }
+}

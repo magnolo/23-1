@@ -1,7 +1,7 @@
 <div id="map">
   <data-title></data-title>
-  <bubble-layer [options]="{valueField:'mag', showClusters: false}"></bubble-layer>
-  <point-layer [datasource]="pointSource" ></point-layer>
-  <map-legend></map-legend>
+  <!-- <point-layer [datasource]="pointSource" ></point-layer> -->
+  <bubble-layer *ngIf="!loading" [options]="data"></bubble-layer>
+  <map-legend [options]="{dark: true}"></map-legend>
   <data-source></data-source>
 </div>

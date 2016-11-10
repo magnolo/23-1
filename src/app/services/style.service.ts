@@ -106,6 +106,9 @@ export class StyleService {
 
   getBubbleStyle(min, max, colors?){
     if(!colors) colors = chroma.scale('OrRd').colors(5);
+    else{
+      colors = colors.map((entry) => { return entry.color});
+    }
     let range = [];
     let s = chroma.scale(colors).mode('lab').out('hex').domain([min,max]);
     let interval = (max - min) / colors.length;

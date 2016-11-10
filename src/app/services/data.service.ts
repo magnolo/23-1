@@ -973,6 +973,15 @@ export class DataService {
   getDataSource() {
     return this.mockData.source;
   }
+  getDataById(id){
+    let url:string = 'assets/'+id+'.json';
+
+    return  this.http.request(url).map((res: Response) => res.json());
+  }
+  
+  getGeoJson(source:string) {
+    return this.http.request(source).map((res: Response) => res.json());
+  }
 
   getGeoJsonData(id?:string) {
 
@@ -987,10 +996,10 @@ export class DataService {
         source = 'assets/UCDP.geojson';
         break;
       default:
-        source = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson';
+        source = 'assets/earthquakes2015.geojson';
     }
 
-    return this.http.request(source).map((res: Response) => res.json());;
+    return this.http.request(source).map((res: Response) => res.json());
 
   }
 

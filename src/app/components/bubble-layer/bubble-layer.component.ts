@@ -20,16 +20,17 @@ import { BubbleLayerOptions } from '../../core/models/bubble-layer-options.model
   styleUrls: ['bubble-layer.scss']
 })
 export class BubbleLayerComponent implements OnInit {
-  @Input() options: BubbleLayerOptions;
+  @Input() options: any;
 
   bubblesId: string;
   bubblesLayer: string;
+  colorPalette: any;
   tooltip: any = {
     value: null,
     address: null,
-    position:{
-      x:0,
-      y:0
+    position: {
+      x: 0,
+      y: 0
     }
   };
 
@@ -40,21 +41,20 @@ export class BubbleLayerComponent implements OnInit {
 
   ngOnInit() {
 
-    this.dataService.getGeoJsonData().subscribe(
+    this.dataService.getGeoJson(this.options.data.source).subscribe(
 
       (data) => {
 
 
-        let range = extent(data.features.map((item) => { return item.properties[this.options.valueField] }));
-        let colors = ['green', 'red', 'blue', 'orange'];
-        let colorPalette = this.styleService.getBubbleStyle(range[0], range[1]);
-
+        let range = extent(data.features.map((item) => { return item.properties[this.options.data.valueField] }));
+        this.colorPalette = this.styleService.getBubbleStyle(range[0], range[1], this.options.style.colors);
+        
         this.mapService.addDataSource(this.bubblesId, {
           type: 'geojson',
           data: data,
-          cluster: this.options.showClusters,
-          clusterMaxZoom: 7,
-          clusterRadius: 25
+          cluster: this.options.data.showClusters,
+          clusterMaxZoom: 3,
+          clusterRadius: 100
         });
 
 
@@ -65,7 +65,7 @@ export class BubbleLayerComponent implements OnInit {
           "filter": ["!has", "point_count"],
           "paint": {
             'circle-radius': {
-              "property": this.options.valueField,
+              "property": this.options.data.valueField,
               "type": "exponential",
               "stops": [
                 [range[0], 1],
@@ -73,89 +73,34 @@ export class BubbleLayerComponent implements OnInit {
               ]
             },
             "circle-color": {
-              "property": this.options.valueField,
-              "stops": colorPalette
-            },
-            //"circle-blur": 1,
-
+              "property": this.options.data.valueField,
+              "stops": this.colorPalette
+            }
           }
         });
-
-        this.mapService.addLayer({
-          "id": "cluster-red",
-          "type": "circle",
-          "source": this.bubblesId,
-          "filter": ["has", "point_count"],
-          "paint": {
-            "circle-color": {
-              "property": 'point_count',
-              "stops": [
-                [0, colors[0]],
-                [30, colors[1]],
-              ]
-            },
-            "circle-radius": 18,
-
-          },
-
-        });
-
-        this.mapService.addLayer({
-          "id": "cluster-count",
-          "type": "symbol",
-          "source": this.bubblesId,
-          "paint":{
-              "text-color": '#ffffff',
-          },
-          "layout": {
-            "text-field": "{point_count}",
-            "text-font": [
-              "DIN Offc Pro Medium",
-              "Arial Unicode MS Bold"
-            ],
-            "text-size": 12
-          }
-        });
+        if(this.options.data.showClusters){
+          this.addClusterLayers();
+        }
 
 
-        // this.mapService.addLayer({
-        //   "id":  this.bubblesLayer+"-title",
-        //   "type": "symbol",
-        //   "source": this.bubblesId,
-        //   "paint":{
-        //       "text-color": '#ffffff',
-        //   },
-        //   "layout": {
-        //     "text-field": "{mag}",
-        //     "text-font": [
-        //       "DIN Offc Pro Medium",
-        //       "Arial Unicode MS Bold"
-        //     ],
-        //     "text-size": 12
-        //   }
-        // });
-        let popup = new Popup({
-          closeButton: false,
-          closeOnClick: false
-        });
-        this.mapService.setLayerEvent(this.bubblesLayer, 'mousemove', (feature, e)=>{
-          if(feature){
+        this.mapService.setLayerEvent(this.bubblesLayer, 'mousemove', (feature, e) => {
+          if (feature) {
             this.tooltip = {
-              value: feature.properties[this.options.valueField],
-              address: feature.properties.place,
-              position:{
-                x:e.point.x,
-                y:e.point.y
+              value: feature.properties[this.options.data.valueField],
+              address: feature.properties[this.options.data.addressField],
+              position: {
+                x: e.point.x,
+                y: e.point.y
               }
             }
           }
-          else{
+          else {
             this.tooltip = {
               value: null,
               address: null,
-              position:{
-                x:0,
-                y:0
+              position: {
+                x: 0,
+                y: 0
               }
             };
           }
@@ -164,7 +109,97 @@ export class BubbleLayerComponent implements OnInit {
       });
 
   }
+  addClusterLayers(){
+    this.mapService.addLayer({
+      "id": "cluster-low",
+      "type": "circle",
+      "source": this.bubblesId,
+      "filter": ["<", "point_count", 20],
+      "paint": {
+        "circle-color": this.colorPalette[0][1],
+        "circle-radius": 18,
 
+      },
+
+    });
+    this.mapService.addLayer({
+      "id": "cluster-low-medium",
+      "type": "circle",
+      "source": this.bubblesId,
+      "filter": ['all',
+        [">", "point_count", 20],
+        ["<=", "point_count", 75],
+      ],
+      "paint": {
+        "circle-color": this.colorPalette[1][1],
+        "circle-radius": 18,
+
+      },
+
+    });
+    this.mapService.addLayer({
+      "id": "cluster-medium",
+      "type": "circle",
+      "source": this.bubblesId,
+      "filter": ['all',
+        [">", "point_count", 75],
+        ["<=", "point_count", 150],
+      ],
+      "paint": {
+        "circle-color": this.colorPalette[2][1],
+        "circle-radius": 18,
+
+      },
+
+    });
+    this.mapService.addLayer({
+      "id": "cluster-high-medium",
+      "type": "circle",
+      "source": this.bubblesId,
+      "filter": ['all',
+        [">", "point_count", 150],
+        ["<=", "point_count", 500],
+      ],
+      "paint": {
+        "circle-color": this.colorPalette[3][1],
+        "circle-radius": 18,
+
+      },
+
+    });
+    this.mapService.addLayer({
+      "id": "cluster-high",
+      "type": "circle",
+      "source": this.bubblesId,
+      "filter": ['all',
+        [">", "point_count", 500],
+      ],
+      "paint": {
+        "circle-color": this.colorPalette[4][1],
+        "circle-radius": 18,
+
+      },
+
+    });
+
+
+    this.mapService.addLayer({
+      "id": "bubbles-cluster-count",
+      "type": "symbol",
+      "source": this.bubblesId,
+      // "paint": {
+      //   "text-color": '#ffffff',
+      // },
+      "layout": {
+        "text-field": "{point_count}",
+        "text-font": [
+          "DIN Offc Pro Medium",
+          "Arial Unicode MS Bold"
+        ],
+        "text-size": 12
+      }
+    });
+  }
   ngAfterViewInit() {
 
   }

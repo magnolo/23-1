@@ -52,6 +52,7 @@ function ngApp(req, res) {
 // ensure routes match client-side-app
 app.get('/', ngApp);
 app.get('/map', ngApp);
+app.get('/map/*', ngApp);
 app.get('/about', ngApp);
 app.get('/about/*', ngApp);
 app.get('/home', ngApp);

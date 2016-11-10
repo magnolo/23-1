@@ -7,13 +7,12 @@ import { App } from './app/app';
 import { routing } from './app/app.routes';
 
 import { MapModule } from './app/components/map/map.module';
-
-
+import { CatalogComponent } from './app/components/catalog/catalog.component';
 
 
 @NgModule({
   bootstrap: [ App ],
-  declarations: [ App ],
+  declarations: [ App, CatalogComponent ],
   imports: [
     UniversalModule, // BrowserModule, HttpModule, and JsonpModule are included
     FormsModule,

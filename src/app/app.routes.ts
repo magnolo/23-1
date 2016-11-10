@@ -1,9 +1,11 @@
 import { RouterModule, Routes } from '@angular/router';
 
 import { mapRoutes } from './components/map/map.routes';
+import { CatalogComponent } from './components/catalog/catalog.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/map', pathMatch: 'full' },
+  { path: '', component: CatalogComponent },
+  //{ path: '', redirectTo: '/map', pathMatch: 'full' },
   ...mapRoutes
 ];
 
