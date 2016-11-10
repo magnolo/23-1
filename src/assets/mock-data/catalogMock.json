@@ -1,0 +1,14 @@
+{
+	"indicators": [
+		{
+			"id":"quakeMock",
+			"featureImg":"assets/mock-data/img/quake.png",
+			"link":"assets/mock-data/quakeMock.json"
+		},
+		{
+			"id":"deathMock",
+			"featureImg":"assets/mock-data/img/death.png",
+			"link":"assets/mock-data/deathMock.json"
+		}
+	]
+}

@@ -3,7 +3,7 @@
   "layer" : "marker",
   "data": {
     "type": "geojson",
-    "source" : "assets/UCDP.geojson",
+    "source" : "assets/mock-data/UCDP.geojson",
     "valueField" : "value",
     "addressField": "description",
     "showClusters" : false
